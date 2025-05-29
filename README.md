@@ -1,2 +1,2 @@
 # dkvh
-Dienstkontor von Hochstein
+Dienstleistungskontor von Hochstein
