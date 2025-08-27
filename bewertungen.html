@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewertungen - DKVH</title>
+
+    <!-- Favicon-Dateien im Unterordner "favicon" -->
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta name="apple-mobile-web-app-title" content="DKVH">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>	
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
+	<h1>Dienstleistungskontor</h1>
+        <h2>von Hochstein</h2>
+        <h1></h1>
+    </header>
+    <nav>
+        <ul>
+      <li><a href="index.html">Start</a></li>
+      <li><a href="leistungen.html">Leistungen</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="bewertungen.html">Bewertungen</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+        </ul>
+    </nav>
+    <main>
+    <h2>Kundenbewertungen</h2>
+    <p>Wenn Sie mit meiner Arbeit zufrieden waren, freue ich mich über eine kurze Rückmeldung.<br>
+       Die Veröffentlichung erfolgt nur mit Ihrer ausdrücklichen Zustimmung.</p>
+
+    <form action="https://formspree.io/f/mblaloon" method="POST">
+      <label for="name">Ihr Name (optional):</label><br />
+      <input type="text" id="name" name="name" /><br /><br />
+
+      <label for="nachricht">Ihre Rückmeldung:</label><br />
+      <textarea id="nachricht" name="nachricht" rows="10" required></textarea><br /><br />
+
+      <label for="sterne">Ihre Bewertung:</label><br />
+      <div class="sterne-bewertung">
+        <input type="radio" id="stern5" name="bewertung" value="5" /><label for="stern5">★</label>
+        <input type="radio" id="stern4" name="bewertung" value="4" /><label for="stern4">★</label>
+        <input type="radio" id="stern3" name="bewertung" value="3" /><label for="stern3">★</label>
+        <input type="radio" id="stern2" name="bewertung" value="2" /><label for="stern2">★</label>
+        <input type="radio" id="stern1" name="bewertung" value="1" /><label for="stern1">★</label>
+      </div><br /><br />
+
+      <label>
+        <input type="checkbox" name="veroeffentlichen" value="ja" />
+        Ich bin mit einer anonymisierten Veröffentlichung einverstanden<br />
+        (Wird das Feld nicht ausgewählt, erhalte nur ich Ihre Rückmeldung, die Bewertung wird jedoch nicht veröffentlicht)
+      </label><br /><br />
+
+      <button type="submit">Rückmeldung senden</button>
+    </form>
+
+    <p><small>Mit dem Absenden erklären Sie sich damit einverstanden, dass Ihre Angaben übermittelt werden. Es erfolgt keine automatische Datenspeicherung auf dieser Website.</small></p>
+  </main>
+
+<div class="bewertung">
+  <div class="bewertung-header">
+    <span class="bewertung-name">Maria Musterfrau</span>
+    <span class="bewertung-sterne">★★★★★</span>
+  </div>
+  <p class="bewertung-text">Beispieltext 1</p>
+  <div class="bewertung-footer">eingegangen am 27.08.2025</div>
+</div>
+
+<div class="bewertung">
+  <div class="bewertung-header">
+    <span class="bewertung-name">Max Mustermann</span>
+    <span class="bewertung-sterne">★★★★☆</span>
+  </div>
+  <p class="bewertung-text">Beispieltext 2</p>
+  <div class="bewertung-footer">eingegangen am 27.08.2025</div>
+</div>
+
+
+  <footer>
+    <p>&copy; 2025 Dienstleistungskontor von Hochstein</p>
+  </footer>
+</body>
+</html>
