@@ -80,3 +80,98 @@ footer {
         padding: 1em;
     }
 }
+
+a {
+    color: #a78c6f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover,
+a:focus {
+    color: #715d45;
+    text-decoration: underline;
+}
+
+footer a {
+    color: #ffffff;
+}
+
+footer a:hover,
+footer a:focus {
+    color: #5c452f;
+    text-decoration: underline;
+}
+
+.sterne-bewertung {
+  direction: rtl;
+  display: inline-flex;
+  justify-content: flex-start;
+  font-size: 1.6rem;
+}
+
+.sterne-bewertung input[type="radio"] {
+  display: none;
+}
+
+.sterne-bewertung label {
+  color: #ccc;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s ease-in-out;
+}
+
+.sterne-bewertung input[type="radio"]:checked ~ label,
+.sterne-bewertung label:hover,
+.sterne-bewertung label:hover ~ label {
+  color: #a78c6f; /* dein edler Farbton */
+}
+
+.bewertung {
+  border: 1px solid #d0c6b9;
+  background-color: #fdfaf5;
+  padding: 1em 1.5em;
+  margin-bottom: 1.5em;
+  border-radius: 8px;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.bewertung-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #5a4634;
+  margin-bottom: 0.5em;
+}
+
+.bewertung-sterne {
+  color: #a78c6f;
+  font-size: 1.2em;
+}
+
+.bewertung-text {
+  margin: 0 0 0.8em 0;
+  color: #2f2f2f;
+}
+
+.bewertung-footer {
+  font-size: 0.8em;
+  color: #888;
+  text-align: right;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  max-width: 600px;
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fffaf5;
+  color: #2f2f2f;
+}
