@@ -44,7 +44,8 @@ nav ul {
 }
 
 nav li {
-    margin: 0 1em;
+	padding: 0.65em 1em;
+	line-height: 0em;
 }
 
 main {
