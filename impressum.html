@@ -35,31 +35,10 @@
 </head>
 
 <body>
-    <header>
-        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
-	<h1>Dienstleistungskontor</h1>
-        <h2>von Hochstein</h2>
-        <h1></h1>
-    </header>
-    <nav>
-    <ul class="navigation">
-        <li><a href="index.html">Start</a></li>
-        <li class="dropdown">
-        <a href="">Leistungen ▾</a>
-        <ul class="dropdown-content">
-            <li><a href="leistungen.html">Leistungsübersicht</a></li>
-            <li><a href="leistungen_it.html">IT & Büro</a></li>
-            <li><a href="leistungen_hg.html">Haus & Garten</a></li>
-        </ul>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="bewertungen.html">Bewertungen</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-    </ul>
-    </nav>
-  <div id="header"></div>
+<!-- header -->	
+<div id="header-placeholder"></div>
 
-  <main>
+<main>
   <h2>Impressum</h2>
   <p><strong>Dienstleistungskontor von Hochstein</strong><br>
   Inhaber: Philipp Hochstein<br>
@@ -124,11 +103,21 @@
   <h3>6. Änderungen</h3>
   <p>Ich behalte mir vor, diese Datenschutzerklärung bei Bedarf anzupassen. Bitte informieren Sie sich regelmäßig über den aktuellen Stand.</p>
 </main>
-    <footer>
-        <p>
-        &copy; 2025 Dienstleistungskontor von Hochstein<br>
-        <a href="kontakt.html">📩 Kontakt</a>
-        </p>
-    </footer>
+
+<!-- footer -->
+<div id="footer-placeholder"></div>
+
+  <script>
+    // Header laden
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-placeholder").innerHTML = data);
+
+    // Footer laden
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+  </script>
+	
 </body>
 </html>
