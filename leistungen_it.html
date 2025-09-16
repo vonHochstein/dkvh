@@ -106,16 +106,26 @@
     </footer>
 
 <script>
-  // Nur ein Accordion-Eintrag gleichzeitig geöffnet
-  document.querySelectorAll('.accordion-toggle').forEach((toggle) => {
-    toggle.addEventListener('change', function () {
-      if (this.checked) {
-        document.querySelectorAll('.accordion-toggle').forEach((el) => {
-          if (el !== this) el.checked = false;
-        });
-      }
+      // Header laden
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-placeholder").innerHTML = data);
+
+    // Footer laden
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+
+    // Nur ein Accordion-Eintrag gleichzeitig geöffnet
+    document.querySelectorAll('.accordion-toggle').forEach((toggle) => {
+      toggle.addEventListener('change', function () {
+        if (this.checked) {
+          document.querySelectorAll('.accordion-toggle').forEach((el) => {
+            if (el !== this) el.checked = false;
+          });
+        }
+      });
     });
-  });
 </script>
 
 </body>
