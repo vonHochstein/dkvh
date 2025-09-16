@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leistungen - DKVH</title>
+
+    <!-- Favicon-Dateien im Unterordner "favicon" -->
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta name="apple-mobile-web-app-title" content="DKVH">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+	<script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
+	<h1>Dienstleistungskontor</h1>
+        <h2>von Hochstein</h2>
+        <h1></h1>
+    </header>
+    <nav>
+    <ul class="navigation">
+        <li><a href="index.html">Start</a></li>
+        <li class="dropdown">
+        <a href="">Leistungen ▾</a>
+        <ul class="dropdown-content">
+            <li><a href="leistungen.html">Leistungsübersicht</a></li>
+            <li><a href="leistungen_it.html">IT & Büro</a></li>
+            <li><a href="leistungen_hg.html">Haus & Garten</a></li>
+        </ul>
+        </li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a href="bewertungen.html">Bewertungen</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+    </nav>
+    <main>
+
+<section class="leistungen-container">
+  <h2>Garten- und Hausmeistertätigkeiten</h2>
+
+  <div class="accordion-block">
+    <input type="checkbox" id="eintrag1" class="accordion-toggle">
+    <label for="eintrag1" class="accordion-title">Gartenarbeiten</label>
+    <div class="accordion-content">
+    <ul class="zentriert">
+      <li>Rasen mähen, Freischneiden, Beete pflegen</li>
+      <li>Hecken schneiden</li>
+      <li>Früchte abnehmen / ernten (z. B. Äpfel, Pflaumen, Beeren)</li>
+      <li>Laub sammeln</li><br/>
+      <em>Es werden ausschließlich einfache Gartenarbeiten angeboten<br/>
+          Leistungen, die eine spezielle handwerkliche Ausbildung oder bauliche Qualifikation erfordern (z. B. Pflastern, Zaunbau, Elektro- oder Wasseranschlüsse), sind nicht Bestandteil des Angebots.</em>
+    </div>
+  </div>
+
+  <div class="trenner"></div>
+
+  <div class="accordion-block">
+    <input type="checkbox" id="eintrag2" class="accordion-toggle">
+    <label for="eintrag2" class="accordion-title">Grabpflege - Respektvolle und zuverlässige Betreuung von Ruhestätten</label>
+    <div class="accordion-content">
+    <ul class="zentriert">
+      <li>Entfernen von Unkraut und Laub, Auflockern des Bodens</li>
+	  <li>Reinigung von Grabsteinen und Grabtafeln</li>
+      <li>Saisonale Bepflanzung und Blumenschmuck, jahreszeitliche Dekoration</li>
+	  <li>Platzierung von Kerzen und Grabschmuck</li>
+	  <li>Betreuung zu besonderen Anlässen (z.B. Todestag, Feiertage)</li>
+	  <li>Fotodokumentation der Pflegearbeiten (auf Wunsch per Mail oder WhatsApp)</li>
+    </div>
+  </div>  <div class="trenner"></div>
+
+  <div class="accordion-block">
+    <input type="checkbox" id="eintrag3" class="accordion-toggle">
+    <label for="eintrag3" class="accordion-title">Hilfsarbeiten nach Anfrage</label>
+    <div class="accordion-content">
+    <ul class="zentriert">
+      <li>sonstige einfache Hilfsarbeiten im Haus oder Garten</li>
+    </div>
+  </div>
+   
+    <p>Sie benötigen persönliche Beratung oder Unterstützung und möchten Ihr Anliegen unverbindlich mit mir besprechen?</p>
+    <a href="kontakt.html">Nehmen Sie Kontakt auf</a>.</p>
+
+</section>
+
+</main>
+    <footer>
+        <p>
+        &copy; 2025 Dienstleistungskontor von Hochstein<br>
+        <a href="kontakt.html">📩 Kontakt</a>
+        </p>
+    </footer>
+
+<script>
+  // Nur ein Accordion-Eintrag gleichzeitig geöffnet
+  document.querySelectorAll('.accordion-toggle').forEach((toggle) => {
+    toggle.addEventListener('change', function () {
+      if (this.checked) {
+        document.querySelectorAll('.accordion-toggle').forEach((el) => {
+          if (el !== this) el.checked = false;
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
