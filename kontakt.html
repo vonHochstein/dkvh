@@ -61,8 +61,22 @@
     <section>
       <h2>Kontakt</h2>
       <p>Sie möchten mir eine Anfrage senden oder ein unverbindliches Angebot einholen?<br>
+		 Nutzen Sie das Kontaktformular oder melden Sie sich bequem per E-Mail.<br>
          Ich freue mich über Ihre Nachricht.</p>
+		 
+    <form action="https://formspree.io/f/mblaloon" method="POST">
+      <label for="name">Ihr Name:</label><br />
+      <input type="text" id="name" name="name" /><br /><br />
 
+      <label for="nachricht">Ihre Nachricht:</label><br />
+      <textarea id="nachricht" name="nachricht" rows="10" required></textarea><br/><br/>
+
+      <label for="contact">Ihr Erreichbarkeit:</label><br />
+      <input type="text" id="contact" name="contact" /><br /><br />
+
+      <button type="submit">Anfrage senden</button>
+    </form>
+	<p><small>Mit dem Absenden erklären Sie sich damit einverstanden, dass Ihre Angaben übermittelt werden. Es erfolgt keine automatische Datenspeicherung auf dieser Website.</small></p>
       <p><strong>E-Mail:</strong><br>
          <a href="mailto:kontakt@dkvh.de">kontakt@dkvh.de</a></p>
 
