@@ -35,29 +35,10 @@
 </head>
 
 <body>
-    <header>
-        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
-	<h1>Dienstleistungskontor</h1>
-        <h2>von Hochstein</h2>
-        <h1></h1>
-    </header>
-    <nav>
-      <ul class="navigation">
-        <li><a href="index.html">Start</a></li>
-        <li class="dropdown">
-          <a href="">Leistungen ▾</a>
-          <ul class="dropdown-content">
-            <li><a href="leistungen.html">Leistungsübersicht</a></li>
-            <li><a href="leistungen_it.html">IT & Büro</a></li>
-            <li><a href="leistungen_hg.html">Haus & Garten</a></li>
-          </ul>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="bewertungen.html">Bewertungen</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-      </ul>
-    </nav>
-    <main>
+<!-- header -->	
+<div id="header-placeholder"></div>
+	
+<main>
     <h2>Kundenbewertungen</h2>
     <p>Wenn Sie mit meiner Arbeit zufrieden waren, freue ich mich über eine kurze Rückmeldung.<br/>
        Die Veröffentlichung erfolgt nur mit Ihrer ausdrücklichen Zustimmung.</p>
@@ -88,7 +69,8 @@
     </form>
 
     <p><small>Mit dem Absenden erklären Sie sich damit einverstanden, dass Ihre Angaben übermittelt werden. Es erfolgt keine automatische Datenspeicherung auf dieser Website.</small></p>
-  </main>
+</main>
+
 <!-- ★☆ -->
 <div class="bewertung">
   <div class="bewertung-header">
@@ -111,11 +93,21 @@
   <div class="bewertung-footer">eingegangen am 01.09.2025</div>
 </div>
 -->
-    <footer>
-        <p>
-        &copy; 2025 Dienstleistungskontor von Hochstein<br>
-        <a href="kontakt.html">📩 Kontakt</a>
-        </p>
-    </footer>
+
+<!-- footer -->
+<div id="footer-placeholder"></div>
+
+  <script>
+    // Header laden
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("header-placeholder").innerHTML = data);
+
+    // Footer laden
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+  </script>
+	
 </body>
 </html>
