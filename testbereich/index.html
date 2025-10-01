@@ -14,7 +14,7 @@
 </head>
 <body>
     <h1>AU-Bescheinigung OCR</h1>
-    <p id="versionInfo">Version: HTML v1.7 • JS v…</p>
+    <p id="versionInfo">Version: HTML v1.8 • JS v…</p>
 
 
     <input type="file" id="imageInput" accept="image/*">
@@ -37,11 +37,10 @@
         <label>Arzt</label><input type="text" id="arzt">
     </div>
 
-    <button onclick="exportCSV()">CSV erzeugen</button><br><a id="csvDownloadLink" download="au_export.csv" style="display:none" class="button">CSV herunterladen</a>
-    <a id="csvDownloadLink" style="display:none;" download="AU_Erfassung.csv">CSV herunterladen</a>
+    <button onclick="exportCSV()">CSV erzeugen</button><br>
+    <a id="csvDownloadLink" download="au_export.csv" style="display:none" class="button">CSV herunterladen</a>
 
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
-    <script src="script.js"></script>
     <script src="script.js?v=1.7" defer></script>
 </body>
 </html>
