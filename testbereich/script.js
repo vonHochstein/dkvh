@@ -1,3 +1,5 @@
+const JS_VERSION = 'v1.4';
+
 let csvBuffer = [];
 
 function preprocessImage(file, callback) {
@@ -212,3 +214,10 @@ async function runSegmentedOCR() {
         };
     });
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById('versionInfo');
+    if (el) {
+        el.innerHTML = el.innerHTML.replace('JS v…', `JS ${JS_VERSION}`);
+    }
+});
