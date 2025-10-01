@@ -1,5 +1,5 @@
 
-const JS_VERSION = 'v1.7';
+const JS_VERSION = 'v1.8';
 
 let csvRows = [];
 
@@ -106,3 +106,6 @@ window.addEventListener('DOMContentLoaded', () => {
         el.innerHTML = el.innerHTML.replace('JS v…', `JS ${JS_VERSION}`);
     }
 });
+
+window.runSmartOCR = runSmartOCR;
+
