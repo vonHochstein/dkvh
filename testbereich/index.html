@@ -6,21 +6,33 @@
     <style>
         body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
         h1 { color: #333; }
-        input, button, textarea { display: block; margin: 10px 0; width: 100%; max-width: 500px; }
+        input, button, textarea, label { display: block; margin: 10px 0; width: 100%; max-width: 500px; }
         textarea { height: 100px; }
         .field-label { font-weight: bold; margin-top: 20px; }
+        .form-section { margin-bottom: 25px; }
     </style>
 </head>
 <body>
     <h1>AU-Bescheinigung OCR</h1>
+
     <input type="file" id="imageInput" accept="image/*">
     <button onclick="runOCR()">OCR starten</button>
-    <div class="field-label">Rohtext (OCR-Ergebnis):</div>
-    <textarea id="ocrResult" readonly></textarea>
-    <div class="field-label">Diagnose (manuell prüfen):</div>
-    <input type="text" id="diagnose">
-    <div class="field-label">Arzt (manuell prüfen):</div>
-    <input type="text" id="arzt">
+
+    <div class="form-section">
+        <label>Krankenkasse</label><input type="text" id="krankenkasse">
+        <label>Name</label><input type="text" id="name">
+        <label>Adresse</label><input type="text" id="adresse">
+        <label>Geburtsdatum</label><input type="text" id="geburtsdatum">
+        <label>Kostenträgerkennung</label><input type="text" id="kostentraeger">
+        <label>Versichertennummer</label><input type="text" id="versichertennr">
+        <label>Status</label><input type="text" id="status">
+        <label>Betriebsstättennummer</label><input type="text" id="bsnr">
+        <label>Arztnummer</label><input type="text" id="arztnr">
+        <label>Datum der Feststellung</label><input type="text" id="datumfest">
+        <label>Diagnose</label><input type="text" id="diagnose">
+        <label>Arzt</label><input type="text" id="arzt">
+    </div>
+
     <button onclick="exportCSV()">CSV erzeugen</button>
     <a id="csvDownloadLink" style="display:none;" download="AU_Erfassung.csv">CSV herunterladen</a>
 
