@@ -64,18 +64,46 @@ async function runOCR() {
             const { data: { text } } = await worker.recognize(processedImageDataURL);
             progressBar.value = 1;
 
-            document.getElementById('krankenkasse').value = (text.match(/Krankenkasse.*?\n(.*)/i) || [,''])[1]?.trim() || '';
-            document.getElementById('name').value = (text.match(/Name.*?\n(.*)/i) || [,''])[1]?.trim() || '';
-            document.getElementById('adresse').value = (text.match(/\d{5}\s+\w+/) || [])[0] || '';
-            document.getElementById('geburtsdatum').value = (text.match(/\b\d{2}\.\d{2}\.\d{2,4}\b/) || [])[0] || '';
-            document.getElementById('kostentraeger').value = (text.match(/Kostentr[aä]gerkennung\s*\n?([\d ]{6,})/) || [,''])[1]?.replace(/\s+/g, '') || '';
-            document.getElementById('versichertennr').value = (text.match(/Versichertennummer\s*\n?([A-Z0-9]+)/i) || [,''])[1] || '';
-            document.getElementById('status').value = (text.match(/Status\s*\n?(\d{1} ?0{6,7})/) || [,''])[1]?.replace(/\s+/g, '') || '';
-            document.getElementById('bsnr').value = (text.match(/Betriebsst[aä]ttennummer.*?(\d{9})/) || [,''])[1] || '';
-            document.getElementById('arztnr').value = (text.match(/Arztnummer.*?(\d{9})/) || [,''])[1] || '';
-            document.getElementById('datumfest').value = (text.match(/\b(\d{2}\.\d{2}\.\d{2,4})\b/) || [,''])[1] || '';
-            document.getElementById('diagnose').value = (text.match(/ICD[- ]?10.*?([A-Z]\d{2}\.\d)/i) || [,''])[1] || '';
-            document.getElementById('arzt').value = (text.match(/Dr\.\s+[\wäöüÄÖÜß\s]+/) || [])[0] || '';
+            const clean = txt => (txt || '').replace(/["']/g, '').trim();
+
+            document.getElementById('krankenkasse').value =
+                clean((text.match(/Krankenkasse[:\s]*\n?(.*)/i) || [,''])[1]);
+
+            document.getElementById('name').value =
+                clean((text.match(/Name[:\s]*\n?(.*)/i) || [,''])[1]);
+
+            const gebDatumMatch = text.match(/geb\.?\s*am\s*(\d{2}\.\d{2}\.\d{2,4})/i)
+                || text.match(/Geburtsdatum[:\s]*\n?(\d{2}\.\d{2}\.\d{2,4})/)
+                || text.match(/\b(\d{2}\.\d{2}\.\d{2,4})\b/);
+            document.getElementById('geburtsdatum').value = clean((gebDatumMatch || [])[1]);
+
+            const adrMatch = text.match(/\d{5}\s+[\wäöüßÄÖÜ\- ]+/);
+            document.getElementById('adresse').value = clean((adrMatch || [])[0]);
+
+            const statusMatch = text.match(/Status\s*:?\s*([10][\s0]{6,})/)
+                || text.match(/\b[10] ?0{6,7}\b/);
+            document.getElementById('status').value = clean((statusMatch || [])[1]?.replace(/\s+/g, ''));
+
+            document.getElementById('kostentraeger').value =
+                clean((text.match(/Kostentr[aä]gerkennung[:\s]*\n?(\d{5,})/) || [,''])[1]);
+
+            document.getElementById('versichertennr').value =
+                clean((text.match(/Versichertennummer[:\s]*\n?([A-Z0-9]+)/i) || [,''])[1]);
+
+            document.getElementById('bsnr').value =
+                clean((text.match(/Betriebsst[aä]ttennummer.*?(\d{9})/) || [,''])[1]);
+
+            document.getElementById('arztnr').value =
+                clean((text.match(/Arztnummer.*?(\d{9})/) || [,''])[1]);
+
+            const datums = text.match(/\b\d{2}\.\d{2}\.\d{2,4}\b/g);
+            document.getElementById('datumfest').value = clean((datums && datums.length > 0) ? datums[0] : '');
+
+            const diagMatch = text.match(/ICD[- ]?10\s*[:\-]?\s*([A-Z]\d{2}(\.\d)?)/i);
+            document.getElementById('diagnose').value = clean((diagMatch || [])[1]);
+
+            const arztMatch = text.match(/(Dr\.?\s+[\wäöüÄÖÜß\s]{3,})/);
+            document.getElementById('arzt').value = clean((arztMatch || [])[1]);
 
         } catch (err) {
             alert("Fehler bei der Texterkennung: " + err.message);
