@@ -1,7 +1,8 @@
-
 async function runOCR() {
     const imageInput = document.getElementById('imageInput');
     const ocrResult = document.getElementById('ocrResult');
+    const diagnoseInput = document.getElementById('diagnose');
+    const arztInput = document.getElementById('arzt');
 
     if (!imageInput.files.length) {
         alert("Bitte ein Bild auswählen.");
@@ -10,19 +11,34 @@ async function runOCR() {
 
     ocrResult.value = "Erkenne Text... Bitte warten.";
 
-    const worker = await Tesseract.createWorker('deu');
-    const { data } = await worker.recognize(imageInput.files[0]);
-    await worker.terminate();
+    const { createWorker } = Tesseract;
+    const worker = await createWorker({
+        logger: m => {
+            console.log(m);
+            ocrResult.value = `Fortschritt: ${Math.round(m.progress * 100)}%`;
+        }
+    });
 
-    const text = data.text;
-    ocrResult.value = text;
+    try {
+        await worker.loadLanguage('deu');
+        await worker.initialize('deu');
 
-    // Optional: Vorerkennung für Diagnose / Arzt (vereinfachter Versuch)
-    const diagnoseMatch = text.match(/ICD[- ]?10.*?([A-Z]\d{2}\.\d)/i);
-    if (diagnoseMatch) document.getElementById('diagnose').value = diagnoseMatch[1];
+        const { data: { text } } = await worker.recognize(imageInput.files[0]);
+        ocrResult.value = text;
 
-    const arztMatch = text.match(/Dr\.\s+[\wäöüÄÖÜß\s]+/i);
-    if (arztMatch) document.getElementById('arzt').value = arztMatch[0];
+        // Einfacher Versuch, Diagnose und Arzt automatisch zu erkennen
+        const diagnoseMatch = text.match(/ICD[- ]?10.*?([A-Z]\d{2}\.\d)/i);
+        if (diagnoseMatch) diagnoseInput.value = diagnoseMatch[1];
+
+        const arztMatch = text.match(/Dr\.\s+[\wäöüÄÖÜß\s]+/i);
+        if (arztMatch) arztInput.value = arztMatch[0];
+
+    } catch (err) {
+        ocrResult.value = "Fehler bei der Texterkennung: " + err.message;
+        console.error(err);
+    } finally {
+        await worker.terminate();
+    }
 }
 
 function exportCSV() {
@@ -30,7 +46,6 @@ function exportCSV() {
     const diagnose = document.getElementById('diagnose').value;
     const arzt = document.getElementById('arzt').value;
 
-    // Einfacher CSV-Zeilenaufbau – später durch gezielte Extraktion ersetzen
     const csvLine = `"${rawText}";"${diagnose}";"${arzt}"\n`;
 
     const blob = new Blob([csvLine], { type: 'text/csv;charset=utf-8;' });
