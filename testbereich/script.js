@@ -144,3 +144,71 @@ function exportCSV() {
     link.style.display = 'block';
     link.click();
 }
+
+
+async function runSegmentedOCR() {
+    const imageInput = document.getElementById('imageInput');
+    const progressBar = document.getElementById('ocrProgress');
+
+    if (!imageInput.files.length) {
+        alert("Bitte ein Bild auswählen.");
+        return;
+    }
+
+    preprocessImage(imageInput.files[0], async function (imageDataURL) {
+        const image = new Image();
+        image.src = imageDataURL;
+
+        image.onload = async function () {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0);
+
+            const { createWorker } = Tesseract;
+            const worker = await createWorker({
+                logger: m => {
+                    if (m.status === 'recognizing text') {
+                        progressBar.style.display = 'block';
+                        progressBar.value = m.progress;
+                    }
+                }
+            });
+
+            await worker.loadLanguage('deu');
+            await worker.initialize('deu');
+
+            const extractField = async (x, y, width, height, callback) => {
+                const subCanvas = document.createElement('canvas');
+                subCanvas.width = width;
+                subCanvas.height = height;
+                const subCtx = subCanvas.getContext('2d');
+                subCtx.drawImage(canvas, x, y, width, height, 0, 0, width, height);
+                const dataURL = subCanvas.toDataURL('image/png');
+                const { data: { text } } = await worker.recognize(dataURL);
+                callback(text.trim());
+            };
+
+            const set = (id, value) => {
+                document.getElementById(id).value = value;
+            };
+
+            await extractField(40, 25, 400, 35, text => set('krankenkasse', text));
+            await extractField(40, 65, 300, 35, text => set('name', text));
+            await extractField(370, 65, 100, 35, text => set('geburtsdatum', text));
+            await extractField(40, 95, 350, 40, text => set('adresse', text));
+            await extractField(48, 166, 120, 30, text => set('kostentraeger', text));
+            await extractField(180, 166, 120, 30, text => set('versichertennr', text));
+            await extractField(320, 166, 80, 30, text => set('status', text));
+            await extractField(40, 196, 180, 30, text => set('bsnr', text));
+            await extractField(240, 196, 180, 30, text => set('arztnr', text));
+            await extractField(440, 196, 130, 30, text => set('datumfest', text));
+            await extractField(60, 365, 150, 35, text => set('diagnose', text));
+            await extractField(410, 305, 220, 70, text => set('arzt', text));
+
+            await worker.terminate();
+            progressBar.style.display = 'none';
+        };
+    });
+}
