@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Mindee OCR-Erfassung</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        h1 { color: #333; }
+        input, button, textarea, label { display: block; margin: 10px 0; width: 100%; max-width: 500px; }
+        textarea { height: 100px; }
+        .field-label { font-weight: bold; margin-top: 20px; }
+        .form-section { margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+    <h1>AU-Daten mit Mindee OCR</h1>
+
+    <input type="file" id="imageInput" accept="image/*" />
+    <button onclick="startMindeeOCR()">Daten auslesen</button>
+
+    <div class="form-section">
+        <label>Krankenkasse</label><input type="text" id="krankenkasse">
+        <label>Name</label><input type="text" id="name">
+        <label>Adresse</label><input type="text" id="adresse">
+        <label>Geburtsdatum</label><input type="text" id="geburtsdatum">
+        <label>Kostenträgerkennung</label><input type="text" id="kostentraeger">
+        <label>Versichertennummer</label><input type="text" id="versichertennr">
+        <label>Status</label><input type="text" id="status">
+        <label>Betriebsstättennummer</label><input type="text" id="bsnr">
+        <label>Arztnummer</label><input type="text" id="arztnr">
+        <label>Datum der Feststellung</label><input type="text" id="datumfest">
+        <label>Diagnose</label><input type="text" id="diagnose">
+        <label>Arzt</label><input type="text" id="arzt">
+    </div>
+
+    <script>
+        async function startMindeeOCR() {
+            const input = document.getElementById('imageInput');
+            if (!input.files.length) {
+                alert("Bitte eine Datei auswählen.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("document", input.files[0]);
+
+            try {
+                const response = await fetch("https://api.mindee.net/v1/products/fd7bee5e-e0e4-477f-8aa8-c8ec406ad78d/predict", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Token md_lMI2ok5xge5PKLJNW4g9JCpvkuHTKiEF"
+                    },
+                    body: formData
+                });
+
+                const data = await response.json();
+                const fields = data.document.inference.prediction;
+
+                document.getElementById('krankenkasse').value = fields.Krankenkasse?.value || "";
+                document.getElementById('name').value = fields.Name?.value || "";
+                document.getElementById('adresse').value = fields.Adresse?.value || "";
+                document.getElementById('geburtsdatum').value = fields.Geburtsdatum?.value || "";
+                document.getElementById('kostentraeger').value = fields.Kostenträgerkennung?.value || "";
+                document.getElementById('versichertennr').value = fields.Versichertennummer?.value || "";
+                document.getElementById('status').value = fields.Status?.value || "";
+                document.getElementById('bsnr').value = fields.Betriebsstättennummer?.value || "";
+                document.getElementById('arztnr').value = fields.Arztnummer?.value || "";
+                document.getElementById('datumfest').value = fields["Datum der Feststellung"]?.value || "";
+                document.getElementById('diagnose').value = fields.Diagnose?.value || "";
+                document.getElementById('arzt').value = fields.Arzt?.value || "";
+
+            } catch (error) {
+                alert("Fehler bei der Anfrage oder Verarbeitung.");
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
