@@ -1,5 +1,5 @@
 
-const JS_VERSION = 'v1.8';
+const JS_VERSION = 'v2.1';
 
 let csvRows = [];
 
