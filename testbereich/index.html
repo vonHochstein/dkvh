@@ -14,13 +14,13 @@
 </head>
 <body>
     <h1>AU-Bescheinigung OCR</h1>
-    <p id="versionInfo">Version: HTML v1.3 • JS v…</p>
+    <p id="versionInfo">Version: HTML v1.5 • JS v…</p>
 
 
     <input type="file" id="imageInput" accept="image/*">
     <progress id="ocrProgress" value="0" max="1" style="display:none; height: 20px; max-width: 500px; width: 100%;"></progress>
     <img id="imgPreview" style="max-width: 500px; width: 100%; margin-top: 10px; display: none; border: 1px solid #ccc; border-radius: 4px;" />
-    <button onclick="runSegmentedOCR();">OCR starten</button>
+    <button onclick="runSmartOCR();">OCR starten</button>
 
     <div class="form-section">
         <label>Krankenkasse</label><input type="text" id="krankenkasse">
