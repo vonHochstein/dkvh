@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>AU-Bescheinigung OCR</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f4; }
+        h1 { color: #333; }
+        input, button, textarea { display: block; margin: 10px 0; width: 100%; max-width: 500px; }
+        textarea { height: 100px; }
+        .field-label { font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>AU-Bescheinigung OCR</h1>
+    <input type="file" id="imageInput" accept="image/*">
+    <button onclick="runOCR()">OCR starten</button>
+    <div class="field-label">Rohtext (OCR-Ergebnis):</div>
+    <textarea id="ocrResult" readonly></textarea>
+    <div class="field-label">Diagnose (manuell prüfen):</div>
+    <input type="text" id="diagnose">
+    <div class="field-label">Arzt (manuell prüfen):</div>
+    <input type="text" id="arzt">
+    <button onclick="exportCSV()">CSV erzeugen</button>
+    <a id="csvDownloadLink" style="display:none;" download="AU_Erfassung.csv">CSV herunterladen</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
