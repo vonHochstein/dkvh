@@ -14,14 +14,14 @@
 </head>
 <body>
 <div class="version-info" style="font-size:14px; color:#666; margin-bottom:10px;">
-    Version v2.0
+    Version v1.0
 </div>
 
     <h1>AU-Bescheinigung OCR</h1>
     <input type="file" id="imageInput" accept="image/*">
     <progress id="ocrProgress" value="0" max="1" style="display:none; height: 20px; max-width: 500px; width: 100%;"></progress>
     <img id="imgPreview" style="max-width: 500px; width: 100%; margin-top: 10px; display: none; border: 1px solid #ccc; border-radius: 4px;" />
-    <button onclick="runSmartOCR();">OCR starten</button>
+    <button onclick="runOCR();">OCR starten</button>
 
     <div class="form-section">
         <label>Krankenkasse</label><input type="text" id="krankenkasse">
@@ -38,11 +38,10 @@
         <label>Arzt</label><input type="text" id="arzt">
     </div>
 
-    <button onclick="exportCSV()">CSV erzeugen</button>
+    <button onclick="addToBuffer()">CSV erzeugen</button>
     <a id="csvDownloadLink" style="display:none;" download="AU_Erfassung.csv">CSV herunterladen</a>
 
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
-    <script src="script.js"></script>
 <script>
 let csvBuffer = [];
 
@@ -71,7 +70,6 @@ function preprocessImage(file, callback) {
             ctx.putImageData(imageData, 0, 0);
             const previewURL = canvas.toDataURL('image/png');
 
-            // Vorschau anzeigen
             const preview = document.getElementById('imgPreview');
             preview.src = previewURL;
             preview.style.display = 'block';
@@ -113,28 +111,33 @@ async function runOCR() {
             const clean = txt => (txt || '').replace(/["']/g, '').trim();
 
             document.getElementById('krankenkasse').value =
-                clean((text.match(/Krankenkasse[:\s]*\n?(.*)/i) || [,''])[1]);
+                clean((text.match(/Krankenkasse[:\s]*
+?(.*)/i) || [,''])[1]);
 
             document.getElementById('name').value =
-                clean((text.match(/Name[:\s]*\n?(.*)/i) || [,''])[1]);
+                clean((text.match(/Name[:\s]*
+?(.*)/i) || [,''])[1]);
 
             const gebDatumMatch = text.match(/geb\.?\s*am\s*(\d{2}\.\d{2}\.\d{2,4})/i)
-                || text.match(/Geburtsdatum[:\s]*\n?(\d{2}\.\d{2}\.\d{2,4})/)
-                || text.match(/\b(\d{2}\.\d{2}\.\d{2,4})\b/);
+                || text.match(/Geburtsdatum[:\s]*
+?(\d{2}\.\d{2}\.\d{2,4})/)
+                || text.match(/(\d{2}\.\d{2}\.\d{2,4})/);
             document.getElementById('geburtsdatum').value = clean((gebDatumMatch || [])[1]);
 
             const adrMatch = text.match(/\d{5}\s+[\wäöüßÄÖÜ\- ]+/);
             document.getElementById('adresse').value = clean((adrMatch || [])[0]);
 
             const statusMatch = text.match(/Status\s*:?\s*([10][\s0]{6,})/)
-                || text.match(/\b[10] ?0{6,7}\b/);
+                || text.match(/[10] ?0{6,7}/);
             document.getElementById('status').value = clean((statusMatch || [])[1]?.replace(/\s+/g, ''));
 
             document.getElementById('kostentraeger').value =
-                clean((text.match(/Kostentr[aä]gerkennung[:\s]*\n?(\d{5,})/) || [,''])[1]);
+                clean((text.match(/Kostentr[aä]gerkennung[:\s]*
+?(\d{5,})/) || [,''])[1]);
 
             document.getElementById('versichertennr').value =
-                clean((text.match(/Versichertennummer[:\s]*\n?([A-Z0-9]+)/i) || [,''])[1]);
+                clean((text.match(/Versichertennummer[:\s]*
+?([A-Z0-9]+)/i) || [,''])[1]);
 
             document.getElementById('bsnr').value =
                 clean((text.match(/Betriebsst[aä]ttennummer.*?(\d{9})/) || [,''])[1]);
@@ -142,7 +145,7 @@ async function runOCR() {
             document.getElementById('arztnr').value =
                 clean((text.match(/Arztnummer.*?(\d{9})/) || [,''])[1]);
 
-            const datums = text.match(/\b\d{2}\.\d{2}\.\d{2,4}\b/g);
+            const datums = text.match(/\d{2}\.\d{2}\.\d{2,4}/g);
             document.getElementById('datumfest').value = clean((datums && datums.length > 0) ? datums[0] : '');
 
             const diagMatch = text.match(/ICD[- ]?10\s*[:\-]?\s*([A-Z]\d{2}(\.\d)?)/i);
@@ -190,7 +193,6 @@ function exportCSV() {
     link.style.display = 'block';
     link.click();
 }
-
 </script>
 </body>
 </html>
