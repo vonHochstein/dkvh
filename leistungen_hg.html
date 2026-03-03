@@ -1,131 +1,176 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leistungen - DKVH</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d10">
 
-    <!-- Favicon-Dateien im Unterordner "favicon" -->
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <meta name="apple-mobile-web-app-title" content="DKVH">
+  <title>Haus &amp; Garten – Dienstleistungskontor von Hochstein</title>
+  <meta name="description" content="Leistungen im Bereich Haus & Garten – Dienstleistungskontor von Hochstein." />
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="DKVH">
 
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+  <!-- Styles -->
+  <link rel="stylesheet" href="./assets/css/landing.css" />
+  <link rel="stylesheet" href="./assets/css/leistungen.css" />
 
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1;
-        }
-    </style>
-	<script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
+  <!-- Counter -->
+  <script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
 </head>
 
 <body>
-    <header>
-        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
-	<h1>Dienstleistungskontor</h1>
-        <h2>von Hochstein</h2>
-        <h1></h1>
-    </header>
-    <nav>
-    <ul class="navigation">
-        <li><a href="index.html">Start</a></li>
-        <li class="dropdown">
-        <a href="">Leistungen ▾</a>
-        <ul class="dropdown-content">
-            <li><a href="leistungen.html">Leistungsübersicht</a></li>
-            <li><a href="leistungen_it.html">IT & Büro</a></li>
-            <li><a href="leistungen_hg.html">Haus & Garten</a></li>
-        </ul>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="bewertungen.html">Bewertungen</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-    </ul>
+  <div id="featherCursor"></div>
+
+  <!-- Background layers (ohne Laterne) -->
+  <div class="bg"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <div class="hg-vines" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="./assets/img/logo.png" alt="DKVH Logo" class="brand__logo" />
+      <span class="brand__name">Dienstleistungskontor von&nbsp;Hochstein</span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="nav__link" href="index.html">Start</a>
+
+      <div class="nav__item nav__item--dropdown">
+        <a class="nav__link" href="leistungen.html">Leistungen ▾</a>
+        <div class="nav__dropdown">
+          <a class="nav__dropdown-link" href="leistungen_it.html">IT &amp; Büro</a>
+          <a class="nav__dropdown-link" href="leistungen_hg.html" aria-current="page">Haus &amp; Garten</a>
+        </div>
+      </div>
+
+      <a class="nav__link" href="kontakt.html">Kontakt</a>
+      <a class="nav__link" href="bewertungen.html">Bewertungen</a>
+      <a class="nav__link" href="impressum.html">Impressum</a>
     </nav>
-    <main>
 
-<section class="leistungen-container">
-  <h2>Garten- und Hausmeistertätigkeiten</h2>
+    <button class="burger" type="button" aria-label="Menü" aria-controls="mobileNav" aria-expanded="false">
+      <span class="burger__icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </header>
 
-  <div class="accordion-block">
-    <input type="checkbox" id="eintrag1" class="accordion-toggle">
-    <label for="eintrag1" class="accordion-title">Gartenarbeiten</label>
-    <div class="accordion-content">
-    <ul class="zentriert">
-      <li>Rasen mähen, Freischneiden, Beete pflegen</li>
-      <li>Hecken schneiden</li>
-      <li>Früchte abnehmen / ernten (z. B. Äpfel, Pflaumen, Beeren)</li>
-      <li>Laub sammeln</li><br/>
-      <em>Es werden ausschließlich einfache Gartenarbeiten angeboten<br/>
-          Leistungen, die eine spezielle handwerkliche Ausbildung oder bauliche Qualifikation erfordern (z. B. Pflastern, Zaunbau, Elektro- oder Wasseranschlüsse), sind nicht Bestandteil des Angebots.</em>
+  <aside class="mobileNav" id="mobileNav" aria-hidden="true">
+    <div class="mobileNav__overlay" data-nav-close></div>
+    <div class="mobileNav__panel" role="dialog" aria-modal="true" aria-label="Menü">
+      <div class="mobileNav__top">
+        <div class="mobileNav__title">MENÜ</div>
+        <button class="mobileNav__close" type="button" aria-label="Schließen" data-nav-close>✕</button>
+      </div>
+
+      <nav class="mobileNav__list" aria-label="Mobile Navigation">
+        <a class="mobileNav__link" href="index.html">Start</a>
+
+        <details class="mobileNav__acc">
+          <summary class="mobileNav__accBtn">
+            <span>Leistungen</span>
+            <span class="mobileNav__chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="mobileNav__accPanel">
+            <a class="mobileNav__subLink" href="leistungen.html">Übersicht</a>
+            <a class="mobileNav__subLink" href="leistungen_it.html">IT &amp; Büro</a>
+            <a class="mobileNav__subLink" href="leistungen_hg.html">Haus &amp; Garten</a>
+          </div>
+        </details>
+
+        <a class="mobileNav__link" href="kontakt.html">Kontakt</a>
+        <a class="mobileNav__link" href="bewertungen.html">Bewertungen</a>
+        <a class="mobileNav__link" href="impressum.html">Impressum</a>
+      </nav>
     </div>
-  </div>
+  </aside>
 
-  <div class="trenner"></div>
+  <main class="wrap">
+    <section class="section" style="margin-top:10px;">
+      <p class="kicker">handwerk · pflege · maß</p>
+      <h1 class="title" style="margin-bottom:10px;">Haus &amp; Garten</h1>
+      <p class="lead" style="max-width: 86ch;">
+        Praktische Unterstützung vor Ort – ruhig, ordentlich und verlässlich. Die folgenden Punkte sind als Orientierung gedacht;
+        Details klären wir unkompliziert im Gespräch.
+      </p>
+    </section>
 
-  <div class="accordion-block">
-    <input type="checkbox" id="eintrag2" class="accordion-toggle">
-    <label for="eintrag2" class="accordion-title">Grabpflege - Respektvolle und zuverlässige Betreuung von Ruhestätten</label>
-    <div class="accordion-content">
-    <ul class="zentriert">
-      <li>Entfernen von Unkraut und Laub, Auflockern des Bodens</li>
-	  <li>Reinigung von Grabsteinen und Grabtafeln</li>
-      <li>Saisonale Bepflanzung und Blumenschmuck, jahreszeitliche Dekoration</li>
-	  <li>Platzierung von Kerzen und Grabschmuck</li>
-	  <li>Betreuung zu besonderen Anlässen (z.B. Todestag, Feiertage)</li>
-	  <li>Fotodokumentation der Pflegearbeiten (auf Wunsch per Mail oder WhatsApp)</li>
-    </div>
-  </div>  <div class="trenner"></div>
+    <section class="section" aria-label="Leistungsbereiche Haus und Garten">
+      <div class="contactBox">
+        <h3>Übersicht</h3>
 
-  <div class="accordion-block">
-    <input type="checkbox" id="eintrag3" class="accordion-toggle">
-    <label for="eintrag3" class="accordion-title">Hilfsarbeiten nach Anfrage</label>
-    <div class="accordion-content">
-    <ul class="zentriert">
-      <li>sonstige einfache Hilfsarbeiten im Haus oder Garten</li>
-    </div>
-  </div>
-   
-    <p>Sie benötigen persönliche Beratung oder Unterstützung und möchten Ihr Anliegen unverbindlich mit mir besprechen?</p>
-    <a href="kontakt.html">Nehmen Sie Kontakt auf</a>.</p>
+        <div class="serviceAcc">
+          <details class="serviceAcc__item" open>
+            <summary class="serviceAcc__sum">Gartenarbeiten</summary>
+            <div class="serviceAcc__body">
+              <ul class="serviceAcc__list">
+                <li>Rasen mähen, Freischneiden, Beete pflegen</li>
+                <li>Hecken schneiden</li>
+                <li>Früchte abnehmen / ernten (z. B. Äpfel, Pflaumen, Beeren)</li>
+                <li>Laub sammeln</li>
+              </ul>
+              <p class="tiny" style="margin-top:10px;">
+                Es werden ausschließlich einfache Gartenarbeiten angeboten. Leistungen, die eine spezielle handwerkliche Ausbildung
+                oder bauliche Qualifikation erfordern (z. B. Pflastern, Zaunbau, Elektro- oder Wasseranschlüsse), sind nicht Bestandteil
+                des Angebots.
+              </p>
+            </div>
+          </details>
 
-</section>
+          <details class="serviceAcc__item">
+            <summary class="serviceAcc__sum">Grabpflege – respektvolle und zuverlässige Betreuung von Ruhestätten</summary>
+            <div class="serviceAcc__body">
+              <ul class="serviceAcc__list">
+                <li>Entfernen von Unkraut und Laub, Auflockern des Bodens</li>
+                <li>Reinigung von Grabsteinen und Grabtafeln</li>
+                <li>Saisonale Bepflanzung und Blumenschmuck, jahreszeitliche Dekoration</li>
+                <li>Platzierung von Kerzen und Grabschmuck</li>
+                <li>Betreuung zu besonderen Anlässen (z. B. Todestag, Feiertage)</li>
+                <li>Fotodokumentation der Pflegearbeiten (auf Wunsch per E-Mail oder WhatsApp)</li>
+              </ul>
+            </div>
+          </details>
 
-</main>
-    <footer>
-        <p>
-        &copy; 2025 Dienstleistungskontor von Hochstein<br>
-        <a href="kontakt.html">📩 Kontakt</a>
-        </p>
+          <details class="serviceAcc__item">
+            <summary class="serviceAcc__sum">Hilfsarbeiten nach Anfrage</summary>
+            <div class="serviceAcc__body">
+              <ul class="serviceAcc__list">
+                <li>Sonstige einfache Hilfsarbeiten im Haus oder Garten</li>
+              </ul>
+            </div>
+          </details>
+        </div>
+
+        <div class="serviceActions" style="margin-top: 16px;">
+          <a class="btn btn--primary" href="kontakt.html">Kontakt aufnehmen</a>
+          <a class="btn" href="leistungen.html">Zur Leistungsübersicht</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__line"></div>
+      <div class="footer__inner">
+        <span class="footer__copy">© 2025 - <span id="year"></span> Dienstleistungskontor von Hochstein</span>
+        <span class="footer__sep">·</span>
+        <span class="footer__links">
+          <a class="footer__link" href="impressum.html">Impressum</a>
+          <span class="footer__sep footer__sep--inner">·</span>
+          <a class="footer__link" href="datenschutz.html">Datenschutz</a>
+        </span>
+      </div>
     </footer>
+  </main>
 
-<script>
-  // Nur ein Accordion-Eintrag gleichzeitig geöffnet
-  document.querySelectorAll('.accordion-toggle').forEach((toggle) => {
-    toggle.addEventListener('change', function () {
-      if (this.checked) {
-        document.querySelectorAll('.accordion-toggle').forEach((el) => {
-          if (el !== this) el.checked = false;
-        });
-      }
-    });
-  });
-</script>
-
+  <script src="./assets/js/landing.js"></script>
+  <script src="./assets/js/accordion.js"></script>
 </body>
 </html>

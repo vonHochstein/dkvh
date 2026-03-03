@@ -1,97 +1,175 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt - DKVH</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d10">
 
-    <!-- Favicon-Dateien im Unterordner "favicon" -->
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <meta name="apple-mobile-web-app-title" content="DKVH">
+  <title>Kontakt – Dienstleistungskontor von Hochstein</title>
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="DKVH">
 
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+  <meta name="description" content="Kontaktaufnahme zum Dienstleistungskontor von Hochstein – Anfrage, Abstimmung, Rückmeldung." />
 
-        body {
-            display: flex;
-            flex-direction: column;
-        }
 
-        main {
-            flex: 1;
-        }
-    </style>
-	<script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
+  <!-- Shared style (Landing-Design) -->
+  <link rel="stylesheet" href="./assets/css/landing.css" />
+
+  <!-- Page-specific style -->
+  <link rel="stylesheet" href="./assets/css/kontakt.css" />
+
+  <!-- Counter -->
+  <script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
 </head>
 
 <body>
-    <header>
-        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
-	<h1>Dienstleistungskontor</h1>
-        <h2>von Hochstein</h2>
-        <h1></h1>
-    </header>
-    <nav>
-    <ul class="navigation">
-        <li><a href="index.html">Start</a></li>
-        <li class="dropdown">
-        <a href="">Leistungen ▾</a>
-        <ul class="dropdown-content">
-            <li><a href="leistungen.html">Leistungsübersicht</a></li>
-            <li><a href="leistungen_it.html">IT & Büro</a></li>
-            <li><a href="leistungen_hg.html">Haus & Garten</a></li>
-        </ul>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="bewertungen.html">Bewertungen</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-    </ul>
+  <!-- Custom cursor -->
+  <div id="featherCursor"></div>
+
+  <!-- Background layers (ohne Laterne) -->
+  <div class="bg"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="./assets/img/logo.png" alt="DKVH Logo" class="brand__logo" />
+      <span class="brand__name">Dienstleistungskontor von&nbsp;Hochstein</span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="nav__link" href="index.html">Start</a>
+
+      <div class="nav__item nav__item--dropdown">
+        <a class="nav__link" href="leistungen.html">Leistungen ▾</a>
+        <div class="nav__dropdown">
+          <a class="nav__dropdown-link" href="leistungen_it.html">IT &amp; Büro</a>
+          <a class="nav__dropdown-link" href="leistungen_hg.html">Haus &amp; Garten</a>
+        </div>
+      </div>
+
+      <a class="nav__link" href="kontakt.html" aria-current="page">Kontakt</a>
+      <a class="nav__link" href="bewertungen.html">Bewertungen</a>
+      <a class="nav__link" href="impressum.html">Impressum</a>
     </nav>
-    <main>
-    <section>
-      <h2>Kontakt</h2>
-      <p>Sie möchten mir eine Anfrage senden oder ein unverbindliches Angebot einholen?<br>
-		 Nutzen Sie das Kontaktformular oder melden Sie sich bequem per E-Mail.<br>
-         Ich freue mich über Ihre Nachricht.</p>
-		 
-    <form action="https://formspree.io/f/mblaloon" method="POST">
-      <label for="name">Ihr Name:</label><br />
-      <input type="text" id="name" name="name" /><br /><br />
 
-      <label for="nachricht">Ihre Nachricht:</label><br />
-      <textarea id="nachricht" name="nachricht" rows="10" required></textarea><br/><br/>
+    <button class="burger" type="button" aria-label="Menü" aria-controls="mobileNav" aria-expanded="false">
+      <span class="burger__icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </header>
 
-      <label for="contact">Ihre Erreichbarkeit:</label><br />
-      <input type="text" id="contact" name="contact" /><br /><br />
+  <aside class="mobileNav" id="mobileNav" aria-hidden="true">
+    <div class="mobileNav__overlay" data-nav-close></div>
+    <div class="mobileNav__panel" role="dialog" aria-modal="true" aria-label="Menü">
+      <div class="mobileNav__top">
+        <div class="mobileNav__title">MENÜ</div>
+        <button class="mobileNav__close" type="button" aria-label="Schließen" data-nav-close>✕</button>
+      </div>
 
-      <button type="submit">Anfrage senden</button>
-    </form>
-	<p><small>Mit dem Absenden erklären Sie sich damit einverstanden, dass Ihre Angaben übermittelt werden. Es erfolgt keine automatische Datenspeicherung auf dieser Website.</small></p>
-      <p><strong>E-Mail:</strong><br>
-         <a href="mailto:kontakt@dkvh.de">kontakt@dkvh.de</a></p>
+      <nav class="mobileNav__list" aria-label="Mobile Navigation">
+        <a class="mobileNav__link" href="index.html">Start</a>
 
-      <p><em>Telefonische Rücksprache ist auf Anfrage möglich.</em></p>
+        <details class="mobileNav__acc">
+          <summary class="mobileNav__accBtn">
+            <span>Leistungen</span>
+            <span class="mobileNav__chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="mobileNav__accPanel">
+            <a class="mobileNav__subLink" href="leistungen.html">Übersicht</a>
+            <a class="mobileNav__subLink" href="leistungen_it.html">IT &amp; Büro</a>
+            <a class="mobileNav__subLink" href="leistungen_hg.html">Haus &amp; Garten</a>
+          </div>
+        </details>
+
+        <a class="mobileNav__link" href="kontakt.html">Kontakt</a>
+        <a class="mobileNav__link" href="bewertungen.html">Bewertungen</a>
+        <a class="mobileNav__link" href="impressum.html">Impressum</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="wrap">
+    <!-- Kopfbereich -->
+    <section class="section" style="margin-top: 10px;">
+      <p class="kicker">ruhig · persönlich · verbindlich</p>
+      <h1 class="title" style="margin-bottom: 10px;">Kontakt</h1>
+      <p class="lead" style="max-width: 70ch;">
+        Wenn Sie eine Anfrage stellen oder ein unverbindliches Angebot wünschen, nutzen Sie gern das Formular
+        oder schreiben Sie direkt per E-Mail. Jede Nachricht wird persönlich geprüft und zeitnah beantwortet.
+      </p>
     </section>
-</main>
-    <footer>
+
+    <!-- Formular (volle Breite) -->
+    <section class="section" aria-label="Kontaktformular">
+      <div class="contactBox">
+        <h3>Formular</h3>
         <p>
-        &copy; 2025 Dienstleistungskontor von Hochstein<br>
-        <a href="kontakt.html">📩 Kontakt</a>
+          Bitte schildern Sie Ihr Anliegen. Angaben zur Erreichbarkeit erleichtern die Abstimmung.
         </p>
+
+        <form action="https://formspree.io/f/mblaloon" method="POST" autocomplete="on">
+          <!-- Spam-Honeypot (soll leer bleiben) -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <label for="name">Ihr Name</label><br />
+          <input type="text" id="name" name="name" autocomplete="name" /><br /><br />
+
+          <label for="reply">Ihre E-Mail</label><br />
+          <input type="email" id="reply" name="_replyto" autocomplete="email" /><br /><br />
+
+          <label for="contact">Ihre telefonische Erreichbarkeit (wenn gewünscht ist auch eine Rückmeldung per Whatsapp möglich)</label><br />
+          <input type="text" id="contact" name="contact" autocomplete="tel" /><br /><br />
+
+          <label for="nachricht">Ihre Nachricht</label><br />
+          <textarea id="nachricht" name="nachricht" rows="10" required></textarea><br /><br />
+
+          <button type="submit" class="btn btn--primary">Anfrage senden</button>
+
+          <p class="tiny" style="margin-top: 12px;">
+            Mit dem Absenden erklären Sie sich damit einverstanden, dass Ihre Angaben zur Bearbeitung Ihrer Anfrage übermittelt werden.
+            Eine automatische Speicherung auf dieser Website erfolgt nicht.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Alternative: Direktkontakt -->
+    <section class="section" aria-label="Direktkontakt">
+      <div class="contactBox">
+        <h3>Direkter Weg</h3>
+        <p>
+          Alternativ erreichen Sie mich direkt unter:<br />
+          <a class="footer__link" href="mailto:kontakt@dkvh.de">kontakt@dkvh.de</a>
+        </p>
+
+        <p class="tiny">
+          Telefonische Rücksprache ist auf Anfrage möglich.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__line"></div>
+      <div class="footer__inner">
+        <span class="footer__copy">© 2025 - <span id="year"></span> Dienstleistungskontor von Hochstein</span>
+        <span class="footer__sep">·</span>
+        <span class="footer__links">
+          <a class="footer__link" href="impressum.html">Impressum</a>
+          <span class="footer__sep footer__sep--inner">·</span>
+          <a class="footer__link" href="datenschutz.html">Datenschutz</a>
+        </span>
+      </div>
     </footer>
+  </main>
+
+  <script src="./assets/js/landing.js"></script>
 </body>
 </html>
-
-
-
-

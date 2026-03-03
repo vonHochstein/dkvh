@@ -1,133 +1,166 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impressum - DKVH</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0d10">
+  <title>Impressum – Dienstleistungskontor von Hochstein</title>
+  
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="shortcut icon" href="favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <meta name="apple-mobile-web-app-title" content="DKVH">
 
-    <!-- Favicon-Dateien im Unterordner "favicon" -->
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <meta name="apple-mobile-web-app-title" content="DKVH">
+  <meta name="description" content="Impressum des Dienstleistungskontors von Hochstein." />
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./assets/css/landing.css" />
 
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1;
-        }
-    </style>
-	<script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
+  <!-- Counter -->
+  <script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
 </head>
 
 <body>
-    <header>
-        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
-	<h1>Dienstleistungskontor</h1>
-        <h2>von Hochstein</h2>
-        <h1></h1>
-    </header>
-    <nav>
-    <ul class="navigation">
-        <li><a href="index.html">Start</a></li>
-        <li class="dropdown">
-        <a href="">Leistungen ▾</a>
-        <ul class="dropdown-content">
-            <li><a href="leistungen.html">Leistungsübersicht</a></li>
-            <li><a href="leistungen_it.html">IT & Büro</a></li>
-            <li><a href="leistungen_hg.html">Haus & Garten</a></li>
-        </ul>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="bewertungen.html">Bewertungen</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-    </ul>
+  <div id="featherCursor"></div>
+
+  <div class="bg"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img src="./assets/img/logo.png" alt="DKVH Logo" class="brand__logo" />
+      <span class="brand__name">Dienstleistungskontor von&nbsp;Hochstein</span>
+    </a>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <a class="nav__link" href="index.html">Start</a>
+
+      <div class="nav__item nav__item--dropdown">
+        <a class="nav__link" href="leistungen.html">Leistungen ▾</a>
+        <div class="nav__dropdown">
+          <a class="nav__dropdown-link" href="leistungen_it.html">IT &amp; Büro</a>
+          <a class="nav__dropdown-link" href="leistungen_hg.html">Haus &amp; Garten</a>
+        </div>
+      </div>
+
+      <a class="nav__link" href="kontakt.html">Kontakt</a>
+      <a class="nav__link" href="bewertungen.html">Bewertungen</a>
+      <a class="nav__link" href="impressum.html" aria-current="page">Impressum</a>
     </nav>
-  <div id="header"></div>
 
-  <main>
-  <h2>Impressum</h2>
-  <p><strong>Dienstleistungskontor von Hochstein</strong><br>
-  Inhaber: Philipp Hochstein<br>
-  Am Elsterhang 5<br>
-  06712 Zeitz<br>
-  Deutschland</p>
+    <button class="burger" type="button" aria-label="Menü" aria-controls="mobileNav" aria-expanded="false">
+      <span class="burger__icon" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </span>
+    </button>
+  </header>
 
-  <p>
-  <strong>E-Mail:</strong> <a href="mailto:kontakt@dkvh.de">kontakt@dkvh.de</a><br>
-  <strong>Internet:</strong> <a href="https://www.dkvh.de" target="_blank">www.dkvh.de</a>
-  </p>
+  <aside class="mobileNav" id="mobileNav" aria-hidden="true">
+    <div class="mobileNav__overlay" data-nav-close></div>
+    <div class="mobileNav__panel" role="dialog" aria-modal="true" aria-label="Menü">
+      <div class="mobileNav__top">
+        <div class="mobileNav__title">MENÜ</div>
+        <button class="mobileNav__close" type="button" aria-label="Schließen" data-nav-close>✕</button>
+      </div>
 
-  <p><strong>Steuernummer:</strong><br>
- 119/323/05030</p>
+      <nav class="mobileNav__list" aria-label="Mobile Navigation">
+        <a class="mobileNav__link" href="index.html">Start</a>
 
-  <p><strong>Einzelunternehmen</strong><br>
-  Nicht im Handelsregister eingetragen</p>
+        <details class="mobileNav__acc">
+          <summary class="mobileNav__accBtn">
+            <span>Leistungen</span>
+            <span class="mobileNav__chev" aria-hidden="true">▾</span>
+          </summary>
+          <div class="mobileNav__accPanel">
+            <a class="mobileNav__subLink" href="leistungen.html">Übersicht</a>
+            <a class="mobileNav__subLink" href="leistungen_it.html">IT &amp; Büro</a>
+            <a class="mobileNav__subLink" href="leistungen_hg.html">Haus &amp; Garten</a>
+          </div>
+        </details>
 
-  <p><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
-  Philipp Hochstein, Am Elsterhang 5, 06712 Zeitz</p><br>
+        <a class="mobileNav__link" href="kontakt.html">Kontakt</a>
+        <a class="mobileNav__link" href="bewertungen.html">Bewertungen</a>
+        <a class="mobileNav__link" href="impressum.html">Impressum</a>
+      </nav>
+    </div>
+  </aside>
 
-  <h2>Datenschutzerklärung</h2>
-  <h3>1. Allgemeine Hinweise</h3>
-  <p>Der Schutz Ihrer Daten ist mir ein wichtiges Anliegen. Ich verarbeite personenbezogene Daten nur im Einklang mit den geltenden Datenschutzvorschriften, insbesondere der Datenschutz-Grundverordnung (DSGVO).</p>
+  <main class="wrap">
+    <section class="section" style="margin-top:10px;">
+      <p class="kicker">formal · verbindlich · transparent</p>
+      <h1 class="title">Impressum</h1>
+    </section>
 
-  <h3>2. Verantwortliche Stelle</h3>
-  <p>Verantwortlich im Sinne der DSGVO:<br>
-  Philipp Hochstein<br>
-  Dienstleistungskontor von Hochstein<br>
-  Am Elsterhang 5<br>
-  06712 Zeitz<br>
-  E-Mail: <a href="mailto:kontakt@dkvh.de">kontakt@dkvh.de</a></p>
-
-  <h3>3. Hosting & Datenschutz</h3>
-  <p>Diese Website wird über einen externen Hosting-Anbieter betrieben. Beim Aufruf der Seiten werden technisch notwendige Verbindungsdaten durch den Hostingdienst verarbeitet.</p>
-  <p>Diese Daten dienen ausschließlich der technischen Stabilität und Optimierung der Website. Sie sind für den Websitebetreiber nicht einsehbar; eine personenbezogene Auswertung findet nicht statt.<br>
-  Diese Website selbst speichert keinerlei personenbezogene Daten und verwendet keine Cookies oder Trackingdienste.</p>
-
-  <h3>4. Kontaktaufnahme</h3>
-  <p>Wenn Sie mich per E-Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage verarbeitet. Die Daten werden nicht an Dritte weitergegeben und nur so lange gespeichert, wie dies zur Bearbeitung erforderlich ist.</p>
-
-  <h3>5. Rechte betroffener Personen</h3>
-  <p>Sie haben das Recht auf:</p>
-  <ul class="zentriert">
-	<li>Auskunft über die gespeicherten Daten</li>
-	<li>Berichtigung unrichtiger Daten</li>
-	<li>Löschung, sofern keine gesetzlichen Aufbewahrungspflichten bestehen</li>
-	<li>Einschränkung der Verarbeitung</li>
-	<li>Widerspruch gegen die Verarbeitung</li>
-	<li>Datenübertragbarkeit</li>
-  </ul>
-  <p>Zur Ausübung dieser Rechte genügt eine formlose Mitteilung per E-Mail an: <a href="mailto:kontakt@dkvh.de">kontakt@dkvh.de</a></p>
-
-  <h3>6. Änderungen</h3>
-  <p>Ich behalte mir vor, diese Datenschutzerklärung bei Bedarf anzupassen. Bitte informieren Sie sich regelmäßig über den aktuellen Stand.</p><br>
-  
-  <h2>Urheberrecht</h2>
-  <p>Alle Inhalte dieser Website – insbesondere Texte, Bilder, Grafiken, Layout und Logo – unterliegen dem Urheberrecht und sind Eigentum des Dienstleistungskontors von Hochstein, sofern nicht anders gekennzeichnet.<br>
-  Jegliche Verwendung, Vervielfältigung oder Weitergabe, auch auszugsweise, ist nur mit ausdrücklicher schriftlicher Genehmigung gestattet.<br>
-  Downloads und Ausdrucke sind ausschließlich für den privaten, nicht kommerziellen Gebrauch erlaubt.<br>
-  Inhalte Dritter sind entsprechend gekennzeichnet. Bei unbeabsichtigten Urheberrechtsverletzungen bitte ich um einen Hinweis – solche Inhalte werden bei Bekanntwerden umgehend entfernt.</p>
-
-</main>
-    <footer>
+    <section class="section">
+      <div class="contactBox">
+        <h3>Anbieter</h3>
         <p>
-        &copy; 2025 Dienstleistungskontor von Hochstein<br>
-        <a href="kontakt.html">📩 Kontakt</a>
+          <strong>Dienstleistungskontor von Hochstein</strong><br>
+          Inhaber: Philipp Hochstein<br>
+          Am Elsterhang 5<br>
+          06712 Zeitz<br>
+          Deutschland
         </p>
+
+        <h3>Kontakt</h3>
+        <p>
+          E-Mail:
+          <a class="footer__link" href="mailto:kontakt@dkvh.de">kontakt@dkvh.de</a><br>
+          Internet:
+          <a class="footer__link" href="https://www.dkvh.de" target="_blank">www.dkvh.de</a>
+        </p>
+
+        <h3>Steuernummer</h3>
+        <p>
+          119/323/05030
+        </p>
+
+        <h3>Unternehmensform</h3>
+        <p>
+          Einzelunternehmen<br>
+          Nicht im Handelsregister eingetragen
+        </p>
+
+        <h3>Verantwortlich für den Inhalt (§ 55 Abs. 2 RStV)</h3>
+        <p>
+          Philipp Hochstein<br>
+          Am Elsterhang 5<br>
+          06712 Zeitz
+        </p>
+
+        <h3>Urheberrecht</h3>
+        <p class="tiny">
+          Alle Inhalte dieser Website – insbesondere Texte, Bilder, Grafiken, Layout und Logo –
+          unterliegen dem Urheberrecht und sind Eigentum des Dienstleistungskontors von Hochstein,
+          sofern nicht anders gekennzeichnet.
+          Jegliche Verwendung, Vervielfältigung oder Weitergabe – auch auszugsweise –
+          ist nur mit ausdrücklicher schriftlicher Genehmigung gestattet.
+          Downloads und Ausdrucke sind ausschließlich für den privaten,
+          nicht kommerziellen Gebrauch erlaubt.
+          Inhalte Dritter sind entsprechend gekennzeichnet.
+          Bei unbeabsichtigten Urheberrechtsverletzungen bitte ich um einen Hinweis –
+          solche Inhalte werden bei Bekanntwerden umgehend entfernt.
+        </p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__line"></div>
+      <div class="footer__inner">
+        <span class="footer__copy">© 2025 - <span id="year"></span> Dienstleistungskontor von Hochstein</span>
+        <span class="footer__sep">·</span>
+        <span class="footer__links">
+          <a class="footer__link" href="impressum.html">Impressum</a>
+          <span class="footer__sep footer__sep--inner">·</span>
+          <a class="footer__link" href="datenschutz.html">Datenschutz</a>
+        </span>
+      </div>
     </footer>
+  </main>
+
+  <script src="./assets/js/landing.js"></script>
 </body>
 </html>

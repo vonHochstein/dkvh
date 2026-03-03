@@ -1,84 +1,172 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DKVH</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0d10">
+<title>Dienstleistungskontor von Hochstein</title>
 
-    <!-- Favicon-Dateien im Unterordner "favicon" -->
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <meta name="apple-mobile-web-app-title" content="DKVH">
+<!-- Favicon & App Icons -->
+<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+<link rel="shortcut icon" href="favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="DKVH">
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+<meta content="Dienstleistungskontor von Hochstein – digitale Handwerkskunst, bodenständige Dienste, klarer Stil." name="description"/>
 
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+<link href="./assets/css/landing.css" rel="stylesheet">
 
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1;
-        }
-    </style>
-	<script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
+<!-- Counter -->
+<script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
 </head>
 
 <body>
-    <header>
-        <img src="img/logo.png" alt="logo_stamp" class="logo_stamp" width="400" height="400">
-	<h1>Dienstleistungskontor</h1>
-        <h2>von Hochstein</h2>
-        <h1></h1>
-    </header>
-    <nav>
-    <ul class="navigation">
-        <li><a href="index.html">Start</a></li>
-        <li class="dropdown">
-        <a href="">Leistungen ▾</a>
-        <ul class="dropdown-content">
-            <li><a href="leistungen.html">Leistungsübersicht</a></li>
-            <li><a href="leistungen_it.html">IT & Büro</a></li>
-            <li><a href="leistungen_hg.html">Haus & Garten</a></li>
-        </ul>
-        </li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-        <li><a href="bewertungen.html">Bewertungen</a></li>
-        <li><a href="impressum.html">Impressum</a></li>
-    </ul>
+<div id="featherCursor"></div>
+<div class="bg"></div>
+<div class="lanternBG" aria-hidden="true"></div>
+<div class="vignette"></div>
+<div class="grain"></div>
+<header class="topbar">
+<a class="brand" href="index.html">
+<img src="./assets/img/logo.png" alt="DKVH Logo" class="brand__logo">
+<span class="brand__name">Dienstleistungskontor von&nbsp;Hochstein</span>
+</a>
+<nav class="nav">
+  <a class="nav__link" href="index.html" aria-current="page">Start</a>
+  <div class="nav__item nav__item--dropdown">
+    <a class="nav__link" href="leistungen.html">Leistungen ▾</a>
+    <div class="nav__dropdown">
+      <a class="nav__dropdown-link" href="leistungen_it.html">IT &amp; Büro</a>
+      <a class="nav__dropdown-link" href="leistungen_hg.html">Haus &amp; Garten</a>
+    </div>
+  </div>
+  <a class="nav__link" href="kontakt.html">Kontakt</a>
+  <a class="nav__link" href="bewertungen.html">Bewertungen</a>
+  <a class="nav__link" href="impressum.html">Impressum</a>
+</nav>
+<button class="burger" type="button" aria-label="Menü" aria-controls="mobileNav" aria-expanded="false">
+  <span class="burger__icon" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </span>
+</button>
+</header>
+<aside class="mobileNav" id="mobileNav" aria-hidden="true">
+  <div class="mobileNav__overlay" data-nav-close></div>
+  <div class="mobileNav__panel" role="dialog" aria-modal="true" aria-label="Menü">
+    <div class="mobileNav__top">
+      <div class="mobileNav__title">MENÜ</div>
+      <button class="mobileNav__close" type="button" aria-label="Schließen" data-nav-close>✕</button>
+    </div>
+
+    <nav class="mobileNav__list" aria-label="Mobile Navigation">
+      <a class="mobileNav__link" href="index.html">Start</a>
+      <details class="mobileNav__acc">
+        <summary class="mobileNav__accBtn">
+          <span>Leistungen</span>
+          <span class="mobileNav__chev" aria-hidden="true">▾</span>
+        </summary>
+        <div class="mobileNav__accPanel">
+          <a class="mobileNav__subLink" href="leistungen.html">Übersicht</a>
+          <a class="mobileNav__subLink" href="leistungen_it.html">IT &amp; Büro</a>
+          <a class="mobileNav__subLink" href="leistungen_hg.html">Haus &amp; Garten</a>
+        </div>
+      </details>
+
+      <a class="mobileNav__link" href="kontakt.html">Kontakt</a>
+      <a class="mobileNav__link" href="bewertungen.html">Bewertungen</a>
+      <a class="mobileNav__link" href="impressum.html">Impressum</a>
     </nav>
-    <main>
-<section>
-  <h2>Willkommen beim Dienstleistungskontor von Hochstein</h2>
-  <p>In einer Welt, die sich immer schneller dreht, braucht es Orte der Klarheit, der Verlässlichkeit und des ehrlichen Tuns. Das Dienstleistungskontor von Hochstein steht für persönliche, durchdachte und vielseitige Unterstützung – jenseits flüchtiger Trends und leerer Versprechen.</p>
-
-  <p>Ob organisatorisch, handwerklich, beratend oder schlicht helfend: Ich biete keine Ansätze von der Stange, sondern individuelle Leistungen mit Haltung. Dabei zählen nicht bunte Logos oder vollmundige Slogans, sondern Vertrauen, Substanz und Diskretion - getragen von Gewissenhaftigkeit und Sorgfalt.</p>
-
-  <p>Ein Kontor im klassischen Sinne – geordnet, aufrichtig, offen für kluge Lösungen.</p>
-
-  <p><strong>Ich freue mich auf Ihre Anfrage.</strong></p>
-  <p><img src="img/personal.png" width="100"></p>  
-
-
-  <a href="kontakt.html">Kontakt aufnehmen</a>
+  </div>
+</aside>
+<main class="wrap">
+<section class="hero">
+<div class="hero__left">
+    <p class="kicker">
+    geordnet, aufrichtig, offen für kluge Lösungen
+    </p><h1 class="title">Dienstleistungskontor<br/><span>von Hochstein</span></h1>
+    <p class="lead">In einer Welt, die sich immer schneller dreht, braucht es Orte der Klarheit, der Verlässlichkeit und des ehrlichen Tuns. Das Dienstleistungskontor von Hochstein steht für persönliche, durchdachte und vielseitige Unterstützung – jenseits flüchtiger Trends und leerer Versprechen.</p><p class="lead">Ob organisatorisch, handwerklich, beratend oder schlicht helfend: Ich biete keine Ansätze von der Stange, sondern individuelle Leistungen mit Haltung. Dabei zählen nicht bunte Logos oder vollmundige Slogans, sondern Vertrauen, Substanz und Diskretion - getragen von Gewissenhaftigkeit und Sorgfalt.</p><div class="cta"><a class="btn btn--primary" href="kontakt.html">Kontakt aufnehmen</a><a class="btn btn--ghost" href="leistungen.html">Leistungen ansehen</a></div><div class="meta"><div class="meta__item"><span class="meta__label">Gegründet auf Verlässlichkeit und Sorgfalt.</span><span class="meta__value">Geführt mit Maß und Gewissenhaftigkeit.</span></div><div class="meta__item"></div></div></div>
+<div class="hero__right">
+<div class="hero__spacer" aria-hidden="true"></div>
+</div>
 </section>
+<section class="section" id="werte">
+    <h2 class="section__title">Wofür das Kontor steht</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>Verlässlichkeit</h3>
+        <p>Zusagen gelten. Klare Kommunikation. Feste Termine.</p>
+      </article>
+      <article class="card">
+        <h3>Sorgfalt</h3>
+        <p>Struktur, Nachvollziehbarkeit und Qualität stehen an erster Stelle.</p>
+      </article>
+      <article class="card">
+        <h3>Diskretion</h3>
+        <p>Vertrauliches bleibt vertraulich. Keine Bühne, keine Story – nur ehrliche Arbeit.</p>
+      </article>
+    </div>
+  </section>
 
-</main>
-    <footer>
-        <p>
-        &copy; 2025 Dienstleistungskontor von Hochstein<br>
-        <a href="kontakt.html">📩 Kontakt</a>
-        </p>
+  <section class="section" id="felder">
+    <h2 class="section__title">Leistungsfelder</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>IT &amp; Büro</h3>
+        <p>Webseiten, Tools, Automatisierung, saubere Dokumentation.</p>
+        <p><a class="footer__link" href="leistungen_it.html">Mehr anzeigen →</a></p>
+      </article>
+      <article class="card">
+        <h3>Organisation</h3>
+        <p>Ordnung schaffen, Abläufe sortieren, pragmatische Lösungen umsetzen.</p>
+        <p><a class="footer__link" href="leistungen.html">Mehr anzeigen →</a></p>
+      </article>
+      <article class="card">
+        <h3>Haus &amp; Garten</h3>
+        <p>Bodenständige Unterstützung – zuverlässig und mit Blick fürs Detail.</p>
+        <p><a class="footer__link" href="leistungen_hg.html">Mehr anzeigen →</a></p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="ablauf">
+    <h2 class="section__title">Ablauf</h2>
+    <div class="cards">
+      <article class="card">
+        <h3>1. Anfrage</h3>
+        <p>Kurz schildern, worum es geht. Ich melde mich zeitnah zurück.</p>
+      </article>
+      <article class="card">
+        <h3>2. Einordnung</h3>
+        <p>Machbarkeit, Rahmen, Aufwand – klar benannt, ohne Überraschungen.</p>
+      </article>
+      <article class="card">
+        <h3>3. Umsetzung</h3>
+        <p>Ruhig, sauber, nachvollziehbar. Ergebnis und nächste Schritte im Blick.</p>
+      </article>
+    </div>
+
+    <div class="cta" style="margin-top:16px;">
+      <a class="btn btn--primary" href="kontakt.html">Kontakt aufnehmen</a>
+      <a class="btn btn--ghost" href="leistungen.html">Leistungen ansehen</a>
+    </div>
+  </section>
+
+    <footer class="footer">
+      <div class="footer__line"></div>
+      <div class="footer__inner">
+        <span class="footer__copy">© 2025 - <span id="year"></span> Dienstleistungskontor von Hochstein</span>
+        <span class="footer__sep">·</span>
+        <span class="footer__links">
+          <a class="footer__link" href="impressum.html">Impressum</a>
+          <span class="footer__sep footer__sep--inner">·</span>
+          <a class="footer__link" href="datenschutz.html">Datenschutz</a>
+        </span>
+      </div>
     </footer>
+</main>
+<script src="./assets/js/landing.js"></script>
 </body>
 </html>

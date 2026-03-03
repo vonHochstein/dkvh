@@ -1,0 +1,162 @@
+/* =========================================================
+   Kontaktseite – Layout & Formular (Kontor-Stil)
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   Layout (einspaltig)
+   --------------------------------------------------------- */
+
+.contactGrid{
+  display: block;
+}
+
+
+/* ---------------------------------------------------------
+   Box-Grundstruktur
+   --------------------------------------------------------- */
+
+.contactBox{
+  background: linear-gradient(
+    180deg,
+    rgba(20,20,24,0.55),
+    rgba(12,12,16,0.70)
+  );
+  border: 1px solid rgba(240,212,140,0.10);
+  border-radius: 18px;
+  padding: 22px;
+  backdrop-filter: blur(6px);
+}
+
+.contactBox + .contactBox{
+  margin-top: 28px;
+}
+
+.contactBox h3{
+  margin: 0 0 10px 0;
+  font-family: Cinzel, serif;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  color: rgba(240,212,140,0.92);
+}
+
+.contactBox p{
+  margin: 0 0 16px 0;
+  color: rgba(233,230,221,0.78);
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   Formular-Styling
+   ========================================================= */
+
+.contactBox form{
+  margin-top: 10px;
+}
+
+.contactBox label{
+  display: inline-block;
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(233,230,221,0.72);
+}
+
+
+/* -------------------------
+   Eingabefelder
+   ------------------------- */
+
+.contactBox input[type="text"],
+.contactBox input[type="email"],
+.contactBox input[type="tel"],
+.contactBox textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(240,212,140,0.16);
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.30),
+    rgba(0,0,0,0.16)
+  );
+
+  color: rgba(233,230,221,0.92);
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.45;
+
+  outline: none;
+
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.contactBox textarea{
+  resize: vertical;
+  min-height: 200px;
+}
+
+.contactBox input::placeholder,
+.contactBox textarea::placeholder{
+  color: rgba(233,230,221,0.40);
+}
+
+
+/* -------------------------
+   Interaktion
+   ------------------------- */
+
+.contactBox input:hover,
+.contactBox textarea:hover{
+  border-color: rgba(240,212,140,0.24);
+}
+
+.contactBox input:focus,
+.contactBox textarea:focus{
+  border-color: rgba(240,212,140,0.38);
+
+  box-shadow:
+    0 0 0 3px rgba(240,212,140,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.36),
+    rgba(0,0,0,0.18)
+  );
+}
+
+
+/* -------------------------
+   HTML-<br>-Glättung
+   ------------------------- */
+
+.contactBox form br{
+  display: none;
+}
+
+.contactBox form input,
+.contactBox form textarea{
+  margin: 0 0 18px 0;
+}
+
+.contactBox form button.btn{
+  margin-top: 8px;
+}
+
+/* Standard-Textcursor deaktivieren */
+.contactBox input,
+.contactBox textarea{
+  cursor: none !important;
+}
+
+.contactBox input,
+.contactBox textarea{
+  caret-color: rgba(240,212,140,0.85);
+}

@@ -1,0 +1,747 @@
+/* IT: Blueprint-Hintergrund (links, dezent) */
+.it-blueprint{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;                /* unter Content, über Grund-Hintergrund */
+
+  background-image: url("/assets/img/it-blueprint_fade.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+
+  opacity: 0.10;             /* extrem dezent */
+  filter: saturate(1.05) contrast(1.05) brightness(0.9);
+}
+
+/* =========================================================
+   Leistungen – Seite (Übersicht / Cards)
+   Nutzt landing.css als Basis
+   ========================================================= */
+
+.serviceGrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 900px){
+  .serviceGrid{ grid-template-columns: 1fr; }
+}
+
+.serviceCard{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border-radius: 18px;
+  text-decoration: none;
+
+  background: linear-gradient(180deg, rgba(20,20,24,0.52), rgba(12,12,16,0.72));
+  border: 1px solid rgba(240,212,140,0.10);
+  backdrop-filter: blur(6px);
+
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  cursor: none !important;
+}
+
+.serviceCard:hover{
+  transform: translateY(-2px);
+  border-color: rgba(240,212,140,0.18);
+  box-shadow: 0 0 0 3px rgba(240,212,140,0.06);
+}
+
+.serviceCard__title{
+  font-family: Cinzel, serif;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  color: rgba(240,212,140,0.92);
+}
+
+.serviceCard__tag{
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: rgba(233,230,221,0.58);
+}
+
+.serviceCard__body p{
+  margin: 0;
+  color: rgba(233,230,221,0.80);
+  line-height: 1.6;
+}
+
+.serviceCard__cta{
+  margin-top: 4px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(240,212,140,0.78);
+}
+
+.serviceActions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.serviceActions a,
+.serviceCard{
+  cursor: none !important;
+}
+
+/* ---------------------------------------------------------
+   Service-Cards mit Bildhintergrund (Kontor-Stil)
+   --------------------------------------------------------- */
+
+.serviceCard--img{
+  position: relative;
+  overflow: hidden;
+}
+
+.serviceCard--img::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--card-img);
+  background-size: cover;
+  background-position: center;
+  filter: blur(0.2px) saturate(0.9) contrast(1.05);
+  opacity: 0.42;
+  transform: scale(1.05);
+}
+
+.serviceCard--img::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.78));
+}
+
+.serviceCard--img > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------------------------------------------------------
+   Service-Cards mit Bildhintergrund – Sichtbarkeit/Präsenz
+   --------------------------------------------------------- */
+
+.serviceCard--img{ position: relative; overflow: hidden; }
+
+.serviceCard--img::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--card-img);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.72;
+  transform: scale(1.08);
+  filter: saturate(1.05) contrast(1.08) brightness(1.02);
+  transition: transform 0.22s ease, opacity 0.22s ease, filter 0.22s ease;
+}
+
+.serviceCard--img::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.62));
+}
+
+.serviceCard--img > *{ position: relative; z-index: 1; }
+
+/* Bild bekommt beim Hover eine minimale „Tiefe“ */
+.serviceCard--img:hover::before{
+  transform: scale(1.12);
+  opacity: 0.78;
+  filter: saturate(1.08) contrast(1.10) brightness(1.04);
+}
+
+/* Kleiner Hinweistext innerhalb der Detail-Accordions */
+.serviceAcc__note{
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(240,212,140,0.10);
+  background: rgba(0,0,0,0.18);
+  color: rgba(233,230,221,0.74);
+  line-height: 1.55;
+}
+
+.serviceAcc__sum{
+  font-family: "Cinzel", serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+
+  padding: 18px 20px;
+  border-radius: 12px;
+
+  background: rgba(0,0,0,0.32);
+  border: 1px solid rgba(240,212,140,0.12);
+
+  transition: all 0.25s ease;
+}
+
+.serviceAcc__sum:hover{
+  background: rgba(240,212,140,0.05);
+  border-color: rgba(240,212,140,0.25);
+  transform: translateX(4px);
+}
+
+
+.serviceAcc__list li{
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* HG: fotorealistische Ranken-Corners */
+.hg-vines{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;                 /* über BG, unter Content */
+  background-image: url("/assets/img/vines-corners.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.15;
+  filter: saturate(1.05) contrast(1.10) brightness(0.92);
+  mix-blend-mode: screen;     /* wirkt wie Lichtdruck auf dunklem Grund */
+}
+
+/* optional: auf kleinen Screens etwas zurücknehmen */
+@media (max-width: 520px){
+  .hg-vines{ opacity: 0.38; }
+}
+
+/* =========================================================
+   IT Hero – Uhr rechts neben Text (stabil, mit Perspektive)
+   ========================================================= */
+
+:root{
+  --itClockCol: clamp(240px, 24vw, 340px);
+  --itClockSize: clamp(210px, 22vw, 320px);
+  --itClockOverX: -3%;
+  --itClockOverY: -4%;
+  --itClockOverlap: 78px; /* Default-Overlap (wird im Desktop-Mode überschrieben) */
+
+  /* Desktop-Fix (ab 1000px) */
+  --itClockDeskSize: 400px;
+  --itClockDeskGap: 44px;
+  --itClockDeskOverlap: 120px;
+}
+
+/* Uhr soll leicht in die nächste Sektion hineinragen (wirkt "eingebettet") */
+.section--it-hero,
+.section--it-heroDesk{
+  position: relative;
+  z-index: 3;
+  margin-bottom: calc(-1 * var(--itClockOverlap));
+  padding-bottom: var(--itClockOverlap);
+}
+
+/* Nachfolgende Sektion liegt darunter */
+.section--it-hero + .section,
+.section--it-heroDesk + .section{
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile: Overlap aus, damit es nicht gedrängt wirkt */
+@media (max-width: 900px){
+  .section--it-hero{
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Desktop (>=1000px): Uhr rechts fix 400px, top-aligned, Overlap in Übersicht */
+@media (min-width: 1000px){
+  /* Overlap gezielt: Hero zieht in die nächste Sektion rein */
+  .section--it-heroDesk{
+    margin-bottom: calc(-1 * var(--itClockDeskOverlap));
+    padding-bottom: var(--itClockDeskOverlap);
+  }
+
+  /* Nächste Sektion (Übersicht) liegt darunter */
+  .section--it-heroDesk + .section--it-services{
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Layout stabilisieren: Text links, Uhr rechts fix */
+  .it-hero--desk{
+    grid-template-columns: minmax(0, 1fr) var(--itClockDeskSize);
+    gap: var(--itClockDeskGap);
+    align-items: start;
+  }
+
+  .it-hero--desk .it-hero__text{
+    text-align: left;
+  }
+
+  .it-hero--desk .it-hero__clock{
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  /* Stage: feste Größe, keine responsive Sprünge */
+  .it-hero--desk .it-clockStage{
+    width: var(--itClockDeskSize);
+    height: var(--itClockDeskSize);
+    transform: translate(0, 0);
+  }
+}
+
+.it-hero{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--itClockCol);
+  gap: 22px;
+  align-items: center;
+}
+
+.it-hero__text{
+  text-align: left;
+}
+
+.it-hero__clock{
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Stage: fester Platz für die Uhr + Perspektive */
+.it-clockStage{
+  width: var(--itClockSize);
+  height: var(--itClockSize);
+  display: grid;
+  place-items: center;
+  overflow: visible;
+
+  /* Perspektive/Neigung */
+  --clock-rot: 4deg;
+  --clock-tilt-x: 6deg;
+  --clock-tilt-y: -10deg;
+  --clock-persp: 1000px;
+
+  perspective: var(--clock-persp);
+  transform: translate(var(--itClockOverX), var(--itClockOverY));
+  will-change: transform;
+}
+
+@media (max-width: 900px){
+  .it-hero{
+    grid-template-columns: 1fr;
+    gap: 18px;
+    justify-items: stretch;
+  }
+
+  .it-hero__text{
+    text-align: left;
+  }
+
+  .it-hero__clock{
+    justify-content: center;
+  }
+
+  .it-clockStage{
+    width: clamp(180px, 55vw, 300px);
+    height: clamp(180px, 55vw, 300px);
+    transform: translate(0, -4%);
+  }
+}
+
+/* IT Clock */
+.it-clock{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Body ist quadratisch -> perfekt */
+
+  /* Drehung/Kippung: wird über Variablen in .it-clockStage gesteuert */
+  transform: rotate(var(--clock-rot)) rotateX(var(--clock-tilt-x)) rotateY(var(--clock-tilt-y));
+  transform-style: preserve-3d;
+
+  /* kein Abschneiden bei Überstand */
+  overflow: visible;
+}
+
+/* Full-size layer (fills the clock square) */
+.it-fill{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Free layer (own size/position; does NOT fill) */
+.it-free{
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.it-body{
+  z-index: 1;
+  filter: drop-shadow(0 18px 40px rgba(0,0,0,0.55));
+  opacity: 0.96;
+}
+
+/* Zeiger: Drehpunkt unten mittig -> transform-origin: 50% 100% */
+.it-hand{
+  z-index: 3;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  /* ganz wichtig */
+  transform-origin: 50% 100%;
+  pointer-events: none;
+  user-select: none;
+
+  /* Default: wir setzen Größe über height, damit es proportional bleibt */
+  width: auto;
+}
+
+/* Größen: hier wirst du sehr wahrscheinlich feinjustieren */
+.it-hand--hour{
+  height: 13%;
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+.it-hand--minute{
+  height: 15%;
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+.it-hand--second{
+  height: 14%;
+  transform: translate(-50%, -100%) rotate(0deg);
+  opacity: 0.92;
+}
+
+/* Crown: centered cap over the hands pivot (separate size) */
+.it-crown{
+  left: 50%;
+  top: 50%;
+  width: 4%;           /* feinjustierbar */
+  height: auto;
+  transform: translate(-50%, -50%) translateZ(2px);
+  z-index: 5;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.45));
+}
+
+/* ---------------------------------------------------------
+   Kontakt-Formular-Stil (für Kontaktseite und Service-Details)
+   --------------------------------------------------------- */
+
+   .contactBox{
+  position: relative;
+  padding: 48px 48px 42px 48px;
+  border-radius: 18px;
+
+  background:
+    linear-gradient(180deg,
+      rgba(18,18,18,0.85),
+      rgba(10,10,10,0.88)
+    );
+
+  border: 1px solid rgba(240,212,140,0.12);
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(240,212,140,0.04);
+
+  backdrop-filter: blur(6px);
+}
+
+.contactBox::before{
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 28px;
+  right: 28px;
+  height: 1px;
+}
+
+.contactBox h3{
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  color: rgba(240,212,140,0.85);
+}
+
+/* =========================================================
+   Smooth Accordion (Details) – gediegen & ruhig
+   (CSS-only, keine Height-Hacks)
+   ========================================================= */
+
+/* Body wird geschlossen wirklich „klein“, inkl. Padding/Margin */
+.serviceAcc__item .serviceAcc__body{
+  /* IMPORTANT: override native <details> behavior (Safari/Chrome)
+     which otherwise toggles display:none and kills animations */
+  display: block;
+
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+
+  /* collapsed spacing */
+  padding: 0 26px;
+  margin-top: 0;
+
+  /* prevent interaction while closed */
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    max-height 1550ms cubic-bezier(0.12, 0.84, 0.18, 1),
+    opacity 680ms ease,
+    transform 680ms ease,
+    padding 1550ms cubic-bezier(0.12, 0.84, 0.18, 1),
+    margin-top 1550ms cubic-bezier(0.12, 0.84, 0.18, 1),
+    visibility 0s linear 1550ms;
+
+  will-change: max-height, opacity, transform;
+}
+
+/* geöffnet: volle Abstände + Inhalt sichtbar */
+.serviceAcc__item[open] .serviceAcc__body{
+  display: block;
+  max-height: 1200px; /* ausreichend groß für unsere Inhalte */
+  opacity: 1;
+  transform: translateY(0);
+  padding: 22px 26px 26px 26px;
+  margin-top: 8px;
+
+  visibility: visible;
+  pointer-events: auto;
+
+  /* Öffnen etwas flotter als Schließen (gediegener Eindruck) */
+  transition:
+    max-height 900ms cubic-bezier(0.12, 0.84, 0.18, 1),
+    opacity 420ms ease,
+    transform 420ms ease,
+    padding 900ms cubic-bezier(0.12, 0.84, 0.18, 1),
+    margin-top 900ms cubic-bezier(0.12, 0.84, 0.18, 1),
+    visibility 0s linear 0s;
+}
+
+/* UA-Override: keep body in flow so animations can run */
+.serviceAcc__item:not([open]) > .serviceAcc__body{ display: block; }
+.serviceAcc__item[open] > .serviceAcc__body{ display: block; }
+
+/* Summary: etwas schwerer/ruhiger */
+.serviceAcc__sum{
+  transition:
+    background 280ms ease,
+    border-color 280ms ease,
+    transform 280ms ease,
+    color 280ms ease;
+}
+
+/* Pfeilbewegung minimal gediegener */
+.serviceAcc__sum::after{
+  transition: transform 520ms ease;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .serviceAcc__item .serviceAcc__body,
+  .serviceAcc__sum,
+  .serviceAcc__sum::after{
+    transition: none !important;
+  }
+}
+
+/* =========================================================
+   IT Uhr – final: aus dem Flow, manuell per Offset positioniert
+   Desktop und Mobile getrennt
+   ========================================================= */
+
+:root{
+  /* Desktop */
+  --itClockDeskSize: 400px;
+  --itClockDeskPad: 44px;     /* Reserve rechts im Text */
+  --itClockDeskX: 0px;        /* + nach rechts, - nach links */
+  --itClockDeskY: 0px;        /* + nach unten, - nach oben */
+  --itClockDeskOverlap: 120px;
+
+  /* Mobile */
+  --itClockMobSize: 240px;
+  --itClockMobPadTop: 8px;    /* Reserve oben im Text (falls nötig) */
+  --itClockMobPadRight: 0px;  /* Reserve rechts (meist 0 auf mobile) */
+  --itClockMobX: 50px;
+  --itClockMobY: 220px;
+}
+
+/* --- DESKTOP: >=1000px --- */
+@media (min-width: 1000px){
+
+  /* Overlap bleibt: Uhr darf in die nächste Section reinragen */
+  .section--it-heroDesk{
+    margin-bottom: calc(-1 * var(--itClockDeskOverlap));
+    padding-bottom: var(--itClockDeskOverlap);
+  }
+
+  /* Anker für absolute Uhr */
+  .it-hero--desk{
+    position: relative;
+  }
+
+  /* Text reserviert nur Platz, verdrängt aber nichts */
+  .it-hero--desk .it-hero__text{
+    text-align: left;
+    padding-right: var(--itClockDeskPad);
+  }
+
+  /* Uhr komplett aus dem Flow */
+  .it-hero--desk .it-hero__clock{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--itClockDeskSize);
+    height: var(--itClockDeskSize);
+    display: block;
+    pointer-events: none;
+    z-index: 5;
+    transform: translate(var(--itClockDeskX), var(--itClockDeskY));
+  }
+
+  /* Stage fix */
+  .it-hero--desk .it-clockStage{
+    width: 100%;
+    height: 100%;
+    transform: translate(0,0);
+  }
+}
+
+/* --- MOBILE: <1000px --- */
+@media (max-width: 999px){
+
+  /* Uhr ebenfalls aus dem Flow, aber kleiner */
+  .it-hero{
+    position: relative;
+  }
+
+  .it-hero .it-hero__text{
+    text-align: left;
+    padding-top: var(--itClockMobPadTop);
+    padding-right: var(--itClockMobPadRight);
+  }
+
+  .it-hero .it-hero__clock{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--itClockMobSize);
+    height: var(--itClockMobSize);
+    pointer-events: none;
+    z-index: 5;
+    transform: translate(var(--itClockMobX), var(--itClockMobY));
+  }
+
+  .it-hero .it-clockStage{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* =========================================================
+   IT Uhr – Feintuning nach Breakpoints (nur Variablen)
+   Zweck: saubere Kontrolle bei sensiblen Zeilenumbrüchen
+   ========================================================= */
+
+/* Standard-Mobile (bis 999px) ist im :root oben gesetzt.
+   Hier überschreiben wir nur, wenn nötig. */
+
+/* Große Phones / kleine Tablets */
+/* @media (max-width: 520px){ 
+  :root{ 
+    /* optional feinjustieren
+     --itClockMobSize: 230px;
+     --itClockMobX: 46px;
+     --itClockMobY: 230px;
+  }
+}
+  */
+
+/* Typische Phones */
+@media (max-width: 430px){
+  :root{
+    /* Beispielwerte – bei Bedarf anpassen */
+    --itClockMobSize: 220px;
+    --itClockMobX: 44px;
+    --itClockMobY: 230px;
+  }
+}
+
+@media (max-width: 400px){
+  :root{
+    --itClockMobSize: 205px;
+    --itClockMobX: 38px;
+    --itClockMobY: 270px;
+  }
+}
+
+@media (max-width: 375px){
+  :root{
+    --itClockMobSize: 205px;
+    --itClockMobX: 38px;
+    --itClockMobY: 270px;
+  }
+}
+
+@media (max-width: 360px){
+  :root{
+    --itClockMobSize: 190px;
+    --itClockMobX: 32px;
+    --itClockMobY: 275px;
+  }
+}
+
+/* Querformat auf Phones: weniger Höhe -> Uhr kompakter und höher */
+@media (max-width: 950px) and (orientation: landscape){
+  :root{
+    /* Default Landscape (z.B. Pro Max): passt bei dir bereits */
+    --itClockMobSize: 280px;
+    --itClockMobX: 22px;
+    --itClockMobY: 0px;
+
+    /* Standard: kein zusätzlicher Reservenraum */
+    --itClockMobPadRight: 0px;
+  }
+}
+
+/* Kleinere Landscape-Breiten (z.B. iPhone Pro): Text muss rechts Raum lassen */
+@media (max-width: 870px) and (orientation: landscape){
+  :root{
+    /* Uhr etwas kompakter, damit es sicher passt */
+    --itClockMobSize: 280px;
+    --itClockMobX: 18px;
+    --itClockMobY: 0px;
+
+    /* Text reserviert Raum für die Uhr (sonst überlappt es) */
+    --itClockMobPadRight: calc(var(--itClockMobSize) + 18px);
+  }
+}
+
+/* Kleinere Landscape-Breiten (z.B. iPhone Pro): Text muss rechts Raum lassen */
+@media (max-width: 850px) and (orientation: landscape){
+  :root{
+    /* Uhr etwas kompakter, damit es sicher passt */
+    --itClockMobSize: 280px;
+    --itClockMobX: 18px;
+    --itClockMobY: 0px;
+
+    /* Text reserviert Raum für die Uhr (sonst überlappt es) */
+    --itClockMobPadRight: calc(var(--itClockMobSize) - 20px);
+  }
+}
+
+/* Optional: Höhe mit berücksichtigen (bei sehr flachen Devices)
+@media (max-width: 430px) and (max-height: 740px){
+  :root{ --itClockMobY: 280px; }
+}
+*/

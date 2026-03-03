@@ -1,0 +1,146 @@
+/* =========================================================
+   Bewertungen – Seite (Formular + Sterne + Karten)
+   Nutzt landing.css als Basis
+   ========================================================= */
+
+/* Formular: Textcursor weg (nur Feder) */
+.contactBox input,
+.contactBox textarea{
+  cursor: none !important;
+  caret-color: rgba(240,212,140,0.85);
+}
+
+/* Sternebewertung */
+.stars{
+  display: inline-flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0 18px 0;
+}
+
+.stars input{
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stars label{
+  font-size: 26px;
+  line-height: 1;
+  color: rgba(233,230,221,0.35);
+  cursor: none !important;
+  transition: transform 0.12s ease, color 0.12s ease, text-shadow 0.12s ease;
+  user-select: none;
+}
+
+.stars label:hover{
+  transform: translateY(-1px);
+  color: rgba(240,212,140,0.80);
+  text-shadow: 0 0 14px rgba(240,212,140,0.15);
+}
+
+.stars label:hover ~ label{
+  color: rgba(240,212,140,0.65);
+}
+
+.stars input:checked ~ label{
+  color: rgba(240,212,140,0.88);
+}
+
+/* Checkbox */
+.consent{
+  margin: 2px 0 16px 0;
+}
+
+.check{
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: rgba(233,230,221,0.78);
+  line-height: 1.5;
+}
+
+.check input{
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  accent-color: rgba(240,212,140,0.85);
+  cursor: none !important;
+}
+
+/* Review Cards */
+.reviewCard{
+  background: linear-gradient(180deg, rgba(20,20,24,0.52), rgba(12,12,16,0.72));
+  border: 1px solid rgba(240,212,140,0.10);
+  border-radius: 18px;
+  padding: 18px 20px;
+}
+
+.reviewCard + .reviewCard{
+  margin-top: 14px;
+}
+
+.reviewTop{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.reviewName{
+  font-family: Cinzel, serif;
+  letter-spacing: 0.02em;
+  color: rgba(240,212,140,0.92);
+  font-size: 16px;
+}
+
+.reviewStars{
+  letter-spacing: 0.12em;
+  color: rgba(240,212,140,0.72);
+  font-size: 15px;
+}
+
+.reviewText{
+  margin: 0 0 12px 0;
+  color: rgba(233,230,221,0.80);
+  line-height: 1.6;
+}
+
+/* ---------------------------------------------------------
+   Review-Text Veredelung (vollständige Zitat-Optik)
+   --------------------------------------------------------- */
+
+.reviewText{
+  position: relative;
+  padding: 0 22px;
+}
+
+.reviewText::before{
+  content: "“";
+  position: absolute;
+  left: 0;
+  top: -6px;
+  font-size: 38px;
+  line-height: 1;
+  font-family: Cinzel, serif;
+  color: rgba(240,212,140,0.25);
+}
+
+.reviewText::after{
+  content: "”";
+  position: absolute;
+  right: 0;
+  bottom: -12px;
+  font-size: 38px;
+  line-height: 1;
+  font-family: Cinzel, serif;
+  color: rgba(240,212,140,0.25);
+}
+
+.reviewFoot{
+  font-size: 12px;
+  color: rgba(233,230,221,0.55);
+  letter-spacing: 0.02em;
+}
