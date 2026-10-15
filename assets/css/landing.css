@@ -68,9 +68,13 @@
 
 *{box-sizing:border-box}
 html,body{min-height:100%}
+/* Solid outer background for Safari's page-edge and overscroll areas. */
+html{background-color:var(--bg0)}
 body{
   margin:0;
   min-height:100vh;
+  /* Keep negative-z atmosphere layers above the body's own background. */
+  isolation:isolate;
   font-family: var(--font-body);
   color:var(--ink);
   background:
@@ -78,6 +82,7 @@ body{
     radial-gradient(1400px 900px at 20% 10%, rgba(135, 106, 32, 0.16), rgba(135, 106, 32, 0.08) 35%, transparent 65%),
     radial-gradient(1100px 700px at 70% 20%, rgba(199,156,80,0.14), rgba(199,156,80,0.06) 40%, transparent 70%),
     linear-gradient(180deg, var(--bg0) 0%, #0a0b11 25%, #0c0d13 50%, #0d0e14 75%, var(--bg1) 100%);
+  background-color:var(--bg0);
   background-repeat: repeat, no-repeat, no-repeat, no-repeat;
 
   background-position: 0 0, 20% 10%, 70% 20%, 0 0;
