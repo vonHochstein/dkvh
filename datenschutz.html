@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="./assets/css/landing.css" />
 
   <!-- Counter -->
-  <script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2"></script>
+  <script src="https://cdn.counter.dev/script.js" data-id="33748b93-9a1c-423e-9dba-7e4c8ef61057" data-utcoffset="2" async></script>
 </head>
 
 <body>
@@ -125,7 +125,11 @@
         <p>
           Diese Daten dienen ausschließlich der technischen Stabilität und Optimierung der Website. Sie sind für den Websitebetreiber
           nicht einsehbar; eine personenbezogene Auswertung findet nicht statt.<br>
-          Diese Website selbst speichert keine personenbezogenen Daten dauerhaft. Es werden keine Cookies gesetzt; zur rein statistischen Reichweitenmessung wird jedoch counter.dev eingesetzt (siehe Punkt 6).
+        </p>
+        <p>
+          Abgesehen von der beschriebenen Reichweitenmessung setzt diese Website selbst keine Cookies und verwendet für ihre eigenen Funktionen
+          weder Local Storage noch Session Storage. counter.dev verwendet nach Angaben des Anbieters keine Cookies. Zur Besucherzählung verwendet
+          der Dienst jedoch <code>sessionStorage</code>, den Browser-Cache und den Referrer (siehe Punkt 6).
         </p>
 
         <h3>4. Kontaktaufnahme</h3>
@@ -149,14 +153,18 @@
           Angaben handelt – Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer effizienten und sicheren Übermittlung).
         </p>
 
-        <h3>6. Reichweitenmessung / Besucherzählung (counter.dev)</h3>
+        <h3>6. Reichweitenmessung mit counter.dev</h3>
         <p>
-          Diese Website nutzt counter.dev, um in einfacher Form statistische Informationen zur Nutzung der Website zu erhalten (z. B. Seitenaufrufe).
-          Dabei werden technisch notwendige Informationen verarbeitet, die Ihr Browser beim Aufruf übermittelt (z. B. Zeitpunkt des Abrufs,
-          aufgerufene Seite sowie technische Verbindungsdaten). Zweck ist die technische und inhaltliche Verbesserung des Angebots.
+          Zur datensparsamen statistischen Auswertung und Verbesserung des Webangebots setzt diese Website counter.dev ein. Nach Angaben des
+          Anbieters verwendet der Dienst keine Cookies und kein IP-Adress-Fingerprinting und verarbeitet Statistiken aggregiert. In die Statistik
+          können unter anderem aufgerufene Seite, Zeitpunkt, Browser, Betriebssystem, Gerätetyp, Bildschirmgröße, Sprache, Referrer und ein aus
+          der IP-Adresse abgeleitetes Land einfließen.
         </p>
         <p>
-          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der anonymen Reichweitenmessung und Optimierung).
+          Das Statistikskript wird beim Seitenaufruf von <code>https://cdn.counter.dev/script.js</code> geladen und übermittelt Statistikdaten an
+          <code>https://t.counter.dev/</code>. Zur Zählung eindeutiger Besuche verwendet counter.dev browserseitige Mechanismen wie
+          <code>sessionStorage</code>, den Browser-Cache und den Referrer. Der Sitzungsmarker <code>_swa</code> bleibt für die Dauer der Browsersitzung
+          gespeichert. Informationen zum Dienst stellt <a class="footer__link" href="https://counter.dev/" rel="external">counter.dev</a> bereit.
         </p>
 
         <h3>7. Rechte betroffener Personen</h3>
