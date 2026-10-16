@@ -156,28 +156,96 @@ if (feather) {
   const mobileNav = document.querySelector('#mobileNav');
   if (!burger || !mobileNav) return;
 
+  const panel = mobileNav.querySelector('.mobileNav__panel');
+  const closeButton = mobileNav.querySelector('.mobileNav__close');
+  const list = mobileNav.querySelector('.mobileNav__list');
   const closeEls = mobileNav.querySelectorAll('[data-nav-close]');
+  const desktop = window.matchMedia('(min-width: 1001px)');
+  let scrollLock = null;
 
-  const setOpen = (open) => {
-    document.body.classList.toggle('nav-open', open);
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-    mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+  const restorePage = () => {
+    if (!scrollLock) return;
+    const saved = scrollLock;
+    scrollLock = null;
+    document.body.classList.remove('nav-open');
+    burger.setAttribute('aria-expanded', 'false');
+    for (const [property, value] of Object.entries(saved.styles)) {
+      if (value.value) {
+        document.body.style.setProperty(property, value.value, value.priority);
+      } else {
+        document.body.style.removeProperty(property);
+      }
+    }
+    window.scrollTo({left:saved.x, top:saved.y, behavior:'instant'});
+    const focusTarget = desktop.matches
+      ? document.querySelector('.nav a[aria-current="page"]') || document.querySelector('.brand')
+      : burger;
+    focusTarget?.focus({preventScroll:true});
   };
 
-  burger.addEventListener('click', () => {
-    const isOpen = document.body.classList.contains('nav-open');
-    setOpen(!isOpen);
+  const closeMenu = () => {
+    if (mobileNav.open) mobileNav.close();
+    restorePage();
+  };
+
+  const openMenu = () => {
+    if (mobileNav.open || desktop.matches) return;
+    const properties = ['position', 'top', 'left', 'width'];
+    const width = document.body.getBoundingClientRect().width;
+    scrollLock = {
+      x:window.scrollX,
+      y:window.scrollY,
+      styles:Object.fromEntries(properties.map(property => [property, {
+        value:document.body.style.getPropertyValue(property),
+        priority:document.body.style.getPropertyPriority(property)
+      }]))
+    };
+    // Keep the page in place, including on touch browsers; retain its width.
+    document.body.style.position = 'fixed';
+    document.body.style.top = `${-scrollLock.y}px`;
+    document.body.style.left = `${-scrollLock.x}px`;
+    document.body.style.width = `${width}px`;
+    list.scrollTop = 0;
+    mobileNav.showModal();
+    // Establish the drawer's initial transform before starting its transition.
+    panel.getBoundingClientRect();
+    document.body.classList.add('nav-open');
+    burger.setAttribute('aria-expanded', 'true');
+    closeButton.focus({preventScroll:true});
+  };
+
+  burger.addEventListener('click', () => mobileNav.open ? closeMenu() : openMenu());
+
+  closeEls.forEach(el => el.addEventListener('click', closeMenu));
+
+  // Keep both Tab directions inside the drawer, including at browser-chrome boundaries.
+  mobileNav.addEventListener('keydown', event => {
+    if (event.key !== 'Tab') return;
+    const controls = [...mobileNav.querySelectorAll('button:not([disabled]), a[href], summary')]
+      .filter(element => element.tabIndex >= 0 && element.getClientRects().length);
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
   });
 
-  closeEls.forEach((el) => el.addEventListener('click', () => setOpen(false)));
-
-  // Close on Escape
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
+  mobileNav.addEventListener('cancel', event => {
+    event.preventDefault();
+    closeMenu();
+  });
+  mobileNav.addEventListener('close', () => {
+    if (!mobileNav.open) restorePage();
   });
 
-  // Close after clicking a link
-  mobileNav.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => setOpen(false));
+  mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  desktop.addEventListener('change', () => {
+    if (desktop.matches) closeMenu();
   });
+  // Do not retain a locked page when restoring from the back/forward cache.
+  window.addEventListener('pagehide', closeMenu);
 })();
