@@ -7,6 +7,9 @@
   const closeButton = dialog.querySelector('.preview-close');
   const largePrev = dialog.querySelector('[data-preview-prev]');
   const largeNext = dialog.querySelector('[data-preview-next]');
+  const cursor = document.querySelector('#featherCursor');
+  const cursorParent = cursor?.parentNode;
+  const cursorNext = cursor?.nextSibling;
   let activeGallery = null;
   let scrollLock = null;
 
@@ -14,6 +17,9 @@
     if (!scrollLock) return;
     const saved = scrollLock;
     scrollLock = null;
+    if (cursorParent && cursor.parentNode === dialog) {
+      cursorParent.insertBefore(cursor, cursorNext?.parentNode === cursorParent ? cursorNext : null);
+    }
     for (const [property, old] of Object.entries(saved.styles)) {
       if (old.value) document.body.style.setProperty(property, old.value, old.priority);
       else document.body.style.removeProperty(property);
@@ -50,6 +56,8 @@
     document.body.style.left = `${-scrollLock.x}px`;
     document.body.style.width = `${width}px`;
     dialog.showModal();
+    // A modal dialog is above document layers, including the custom cursor.
+    if (cursor) dialog.append(cursor);
     closeButton.focus({preventScroll:true});
   };
 
