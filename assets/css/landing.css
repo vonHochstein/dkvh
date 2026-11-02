@@ -837,10 +837,11 @@ body.nav-open .burger__icon span:nth-child(2){ opacity:0; }
 body.nav-open .burger__icon span:nth-child(3){ top:5px; transform: rotate(-45deg); }
 
 /* === Burger: finaler Sichtbarkeits-Override === */
-@media (max-width: 1000px){
+@media (max-width: 1180px){
+  .nav{ display:none; }
   .burger{ display:inline-flex !important; }
 }
-@media (min-width: 1001px){
+@media (min-width: 1181px){
   .burger{ display:none !important; }
 }
 

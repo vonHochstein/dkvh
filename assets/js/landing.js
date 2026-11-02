@@ -160,7 +160,7 @@ if (feather) {
   const closeButton = mobileNav.querySelector('.mobileNav__close');
   const list = mobileNav.querySelector('.mobileNav__list');
   const closeEls = mobileNav.querySelectorAll('[data-nav-close]');
-  const desktop = window.matchMedia('(min-width: 1001px)');
+  const desktop = window.matchMedia('(min-width: 1181px)');
   let scrollLock = null;
 
   const restorePage = () => {
