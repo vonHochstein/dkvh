@@ -11,9 +11,16 @@
 }
 
 /* Sternebewertung */
+.starsTitle{
+  display: inline-block;
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(233,230,221,0.72);
+}
+
 .stars{
   display: inline-flex;
-  flex-direction: row-reverse;
   gap: 8px;
   align-items: center;
   margin: 8px 0 18px 0;
@@ -40,12 +47,22 @@
   text-shadow: 0 0 14px rgba(240,212,140,0.15);
 }
 
-.stars label:hover ~ label{
+.stars label:has(~ label:hover){
   color: rgba(240,212,140,0.65);
 }
 
-.stars input:checked ~ label{
+.stars input:checked + label{
   color: rgba(240,212,140,0.88);
+}
+
+.stars label:has(~ input:checked){
+  color: rgba(240,212,140,0.88);
+}
+
+.stars input:focus-visible + label{
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
 /* Checkbox */
