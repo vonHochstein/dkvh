@@ -516,7 +516,7 @@ input, textarea, select{
   pointer-events: none;
   z-index: var(--z-cursor);
   transform: translate(-50%, -50%);
-  background: url("../img/feather.png") no-repeat center center;
+  background: url("../img/feather-cursor.png") no-repeat center center;
   background-size: contain;
   will-change: transform;
 }
