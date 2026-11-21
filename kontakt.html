@@ -115,11 +115,11 @@
     <section class="section" aria-label="Kontaktformular">
       <div class="contactBox">
         <h3>Formular</h3>
-        <p>
-          Bitte schildern Sie Ihr Anliegen. Angaben zur Erreichbarkeit erleichtern die Abstimmung.
+        <p id="contact-reply-hint">
+          Damit ich Ihnen antworten kann, geben Sie bitte Ihre E-Mail-Adresse oder Telefonnummer an.
         </p>
 
-        <form action="https://formspree.io/f/mblaloon" method="POST" autocomplete="on">
+        <form id="contact-form" action="https://formspree.io/f/mblaloon" method="POST" autocomplete="on">
           <!-- Spam-Honeypot (soll leer bleiben) -->
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
@@ -127,10 +127,12 @@
           <input type="text" id="name" name="name" autocomplete="name" /><br /><br />
 
           <label for="reply">Ihre E-Mail</label><br />
-          <input type="email" id="reply" name="_replyto" autocomplete="email" /><br /><br />
+          <input type="email" id="reply" name="_replyto" autocomplete="email" aria-describedby="contact-reply-hint" required /><br /><br />
 
-          <label for="contact">Ihre telefonische Erreichbarkeit (wenn gewünscht ist auch eine Rückmeldung per Whatsapp möglich)</label><br />
-          <input type="text" id="contact" name="contact" autocomplete="tel" /><br /><br />
+          <label for="contact">Ihre Telefonnummer (auf Wunsch auch für eine Rückmeldung per WhatsApp)</label><br />
+          <input type="tel" id="contact" name="contact" autocomplete="tel" aria-describedby="contact-reply-hint" /><br /><br />
+
+          <noscript><p>Bitte geben Sie bei deaktiviertem JavaScript Ihre E-Mail-Adresse an.</p></noscript>
 
           <label for="nachricht">Ihre Nachricht</label><br />
           <textarea id="nachricht" name="nachricht" rows="10" required></textarea><br /><br />
@@ -175,5 +177,6 @@
   </main>
 
   <script src="./assets/js/landing.js?v=20261102-referenzen-1"></script>
+  <script src="./assets/js/kontakt.js"></script>
 </body>
 </html>
