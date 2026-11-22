@@ -518,7 +518,12 @@ input, textarea, select{
   transform: translate(-50%, -50%);
   background: url("../img/feather-cursor.png") no-repeat center center;
   background-size: contain;
+  opacity: 0;
   will-change: transform;
+}
+
+html.feather-active #featherCursor{
+  opacity: 1;
 }
 
 .cursor-hover{
@@ -537,6 +542,17 @@ html, body {
 /* Textfelder dürfen I-Beam behalten */
 input, textarea, select {
   cursor: text !important;
+}
+
+@media (any-hover: hover) and (any-pointer: fine){
+  :root:not(.feather-active),
+  :root:not(.feather-active) :where(body, body *, body *::before, body *::after){
+    cursor: url("../img/feather-start.png") 8 42, auto !important;
+  }
+
+  :root:not(.feather-active) :where(input[type="text"], input[type="email"], input[type="tel"], textarea, select){
+    cursor: text !important;
+  }
 }
 
 

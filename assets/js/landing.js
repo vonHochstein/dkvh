@@ -18,24 +18,7 @@ document.getElementById("copyMail")?.addEventListener("click", async () => {
 const feather = document.getElementById("featherCursor");
 
 if (feather) {
-  // Start hidden until we actually see the mouse inside the window
-  let cursorVisible = false;
-  feather.style.opacity = "0";
-
-  function showCursor(){
-    if (!cursorVisible) {
-      feather.style.opacity = "1";
-      cursorVisible = true;
-    }
-  }
-
-  function hideCursor(){
-    if (cursorVisible) {
-      feather.style.opacity = "0";
-      cursorVisible = false;
-    }
-  }
-
+  const cursorRoot = document.documentElement;
   const offsetX = 8;   // Hotspot horizontal
   const offsetY = 42;  // Hotspot vertical (Spitze unten links)
 
@@ -67,6 +50,14 @@ if (feather) {
     return Math.max(min, Math.min(max, v));
   }
 
+  function hideCursor(){
+    cursorRoot.classList.remove("feather-active");
+    lastX = null;
+    lastY = null;
+    rotCurrent = rotTarget = 0;
+    scaleCurrent = scaleTarget = 1;
+  }
+
   // Hover highlight (optional, if CSS class exists)
   const hoverTargets = document.querySelectorAll("a, button, .btn, .nav__link");
   hoverTargets.forEach(el => {
@@ -74,14 +65,16 @@ if (feather) {
     el.addEventListener("mouseleave", () => feather.classList.remove("cursor-hover"));
   });
 
-  document.addEventListener("mousemove", (e) => {
-    showCursor();
+  document.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse") return;
     // Keep position direct
     posX = e.clientX - offsetX;
     posY = e.clientY - offsetY;
 
-    // First move: initialize without rotation jump
+    // Position the animated feather before hiding the static cursor.
     if (lastX === null || lastY === null) {
+      feather.style.transform = `translate(${posX}px, ${posY}px)`;
+      cursorRoot.classList.add("feather-active");
       lastX = e.clientX;
       lastY = e.clientY;
       return;
@@ -102,11 +95,12 @@ if (feather) {
   });
 
   // Click impulse
-  document.addEventListener("mousedown", () => {
-    scaleTarget = scaleDown;
+  document.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "mouse") scaleTarget = scaleDown;
+    else hideCursor();
   });
 
-  document.addEventListener("mouseup", () => {
+  document.addEventListener("pointerup", () => {
     scaleTarget = 1;
   });
 
@@ -117,21 +111,13 @@ if (feather) {
     }
   });
 
-  // Show again when re-entering
-  window.addEventListener("mouseover", () => {
-    showCursor();
-  });
-
   // Also hide when the tab becomes hidden
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) hideCursor();
   });
 
-  // In case the user switches window / tab
-  window.addEventListener("blur", () => {
-    scaleTarget = 1;
-    hideCursor();
-  });
+  window.addEventListener("blur", hideCursor);
+  window.addEventListener("pagehide", hideCursor);
 
   // Render loop (position stays direct; rotation/scale get smoothed)
   function render(){
